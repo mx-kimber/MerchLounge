@@ -6,10 +6,10 @@ export function Header() {
     <header>
       <div className="nav-links">
         <div className="">
-          <a href="#">Create Account </a>|
+          <a href="/signup">Create Account </a>|
         </div> 
         <div>
-          <a href="#"> Login</a> |
+          <a href="/login"> Login</a> |
         </div>
         <div>
           <LogoutLink />
