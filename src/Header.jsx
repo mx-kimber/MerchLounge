@@ -1,14 +1,18 @@
 import "./Header.css"
+import { LogoutLink } from "./LogoutLink"
 
 export function Header() {
   return (
     <header>
       <div className="nav-links">
         <div className="">
-          <a href="#">Create Account </a>
+          <a href="#">Create Account </a>|
         </div> 
         <div>
-          <a href="#"> Login</a>
+          <a href="#"> Login</a> |
+        </div>
+        <div>
+          <LogoutLink />
         </div>
       </div>
 
