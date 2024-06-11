@@ -5,7 +5,7 @@ import { Login } from "./Login"
 export function Content() {
   return (
    
-    <div className="container outline"> 
+    <div className="outline"> 
       <div>
         <MerchLounge />
       </div>

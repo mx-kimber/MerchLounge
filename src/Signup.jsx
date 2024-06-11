@@ -37,7 +37,7 @@ export function Signup() {
           Last Name: <input name="last_name" type="text" />
         </div>
         <div>
-          Phone Number: <input name="phone-number" type="text" />
+          Phone Number: <input name="phone_number" type="text" />
         </div>
         <div>
           Email: <input name="email" type="email" />
