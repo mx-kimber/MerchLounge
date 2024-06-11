@@ -2,17 +2,20 @@ import "./Header.css"
 import { LogoutLink } from "./LogoutLink"
 
 export function Header() {
+  let authenticationLinks;
+  if (localStorage.jwt === undefined) {
+    authenticationLinks = <>
+      <a href="/login">Login</a>| <a href="/signup">Signup</a>
+    </>
+  } else {
+    authenticationLinks = <LogoutLink />
+  }
+
   return (
     <header>
       <div className="nav-links">
-        <div className="">
-          <a href="/signup">Create Account </a>|
-        </div> 
         <div>
-          <a href="/login"> Login</a> |
-        </div>
-        <div>
-          <LogoutLink />
+          {authenticationLinks}
         </div>
       </div>
 
