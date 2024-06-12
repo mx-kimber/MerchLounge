@@ -35,6 +35,10 @@ button:hover {
 
 }
 
+img {
+  width: 150px;
+  height: 150px;
+}
 body {
   max-width: 1080px;
   margin: 0 auto;
@@ -48,7 +52,7 @@ body {
   display: flex;
   flex-direction: row;
   padding:5px;
-  justify-content: space-between
+
 }
 .container {
   display: flex;
