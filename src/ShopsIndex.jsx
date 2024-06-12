@@ -1,18 +1,27 @@
-import React from 'react'
+import React from 'react';
+import './shops.css';
 
 export function ShopsIndex(props) {
   return (
-    <div>
-    <h1>All shops</h1>
-     {props.shops.map((shop) => (
-       <div key={shop.id} className='#'>
-         <img src={shop.image} />
-         <h2>{shop.shop_name}</h2>
-         <p>{shop.description}</p>
-       </div>
-     ))}
-  </div>
-);
+    <div className='#'>
+      <h1>All shops</h1>
+
+      <div className='shops-container outline'>
+        
+          {props.shops.map((shop) => (
+            <div key={shop.id} className='shop-item'>
+              <img src={shop.image} alt={shop.shop_name} />
+              {/* <div>{shop.shop_name}
+                </div> */}
+              {/* <p>{shop.description}</p> */}
+            </div>
+          ))}
+
+
+      </div>
+
+    </div>
+  );
 }
 
-export default ShopsIndex
+export default ShopsIndex;
