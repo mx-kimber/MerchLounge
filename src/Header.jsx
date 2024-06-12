@@ -44,11 +44,11 @@ export function Header() {
 
       <div className="logo-container">
         <div className="container">
-          <div className="font-100">M</div>
-          <div className="container-2">
-            <div className="font-30">erch</div>
-            <div className="font-50">L</div>
-            <div className="font-30 margin-neg-5">ounge</div>
+          <div className="logo-M-font-100">M</div>
+          <div className="erchLounge-container">
+            <div className="logo-font-30">erch</div>
+            <div className="logo-font-50">L</div>
+            <div className="logo-font-30 ounge-skooch">ounge</div>
           </div>
         </div>
       </div>
