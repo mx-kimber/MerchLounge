@@ -1,5 +1,5 @@
 import MerchLounge from "./MerchLounge";
-import ShopsIndex from "./ShopsIndex"
+import { AccountSettings } from "./AccountSettings";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -21,12 +21,14 @@ export function Content() {
 
   return (
     <div>
-      <div className="container-row">
-        <ShopsIndex shops={shops} />
-      </div>
       <Routes>
-        <Route path="/MerchLounge" element={<MerchLounge />} />
+        <Route path="/MerchLounge" element={<MerchLounge shops={shops} />} />
+        <Route path="/account_settings" element={<AccountSettings />} />
+        
       </Routes>
     </div>
   );
 }
+
+export default Content;
+
