@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import ShopsIndex from './ShopsIndex';
 
-export function MerchLounge() {
+export function MerchLounge({ shops }) {
   return (
-    <div className="font-30">***</div>
-  )
+    <div className="container-row">
+      <ShopsIndex shops={shops} />
+    </div>
+  );
 }
 
-export default MerchLounge
+export default MerchLounge;
