@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import UserShow from './UserShow';
 
 export function AccountSettings() {
   return (
@@ -7,7 +8,7 @@ export function AccountSettings() {
         Account Settings
       </div>
       <div className='#'>
-        {/* <ShowUser /> */}
+        <UserShow />
         {/* <UpdateUser /> */}
         {/* <CreateShop /> */}
       </div>
@@ -15,4 +16,7 @@ export function AccountSettings() {
   )
 }
 
-export default AccountSettings
+export default AccountSettings;
+
+
+// note to self: add button for UserUpdate and CreateShop on modals 
