@@ -1,5 +1,6 @@
 import React from 'react';
 import UserShow from './UserShow';
+import UserUpdate from './UserUpdate';
 
 export function AccountSettings() {
   return (
@@ -9,7 +10,7 @@ export function AccountSettings() {
       </div>
       <div className='#'>
         <UserShow />
-        {/* <UpdateUser /> */}
+        <UserUpdate />
         {/* <CreateShop /> */}
       </div>
     </div>
