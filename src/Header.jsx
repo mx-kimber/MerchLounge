@@ -4,10 +4,12 @@ import { useState } from "react";
 import { Modal } from "./Modal";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const navigate = useNavigate();
 
   const handleShowSignup = () => {
     setModalContent(<Signup />);
@@ -24,6 +26,10 @@ export function Header() {
     setModalContent(null);
   };
 
+  const handleNavToUserSettings = () => {
+    navigate("/account_settings");
+  };
+
   let authenticationLinks;
   if (localStorage.jwt === undefined) {
     authenticationLinks = (
@@ -33,7 +39,15 @@ export function Header() {
       </div>
     );
   } else {
-    authenticationLinks = <LogoutLink />;
+    authenticationLinks = (
+
+      <div className="container-row">
+        <LogoutLink />
+        <button onClick={handleNavToUserSettings}>
+          Account Settings
+        </button>
+      </div>
+    );
   }
 
   return (

@@ -9,9 +9,10 @@ export function LogoutLink() {
   };
 
   return (
-    <div className="container-row">
-    <button onClick={handleClick}>
-      Logout
-    </button></div>
+    <div className="#">
+      <button onClick={handleClick}>
+        Logout
+      </button>
+    </div>
   );
 }
