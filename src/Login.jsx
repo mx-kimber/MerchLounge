@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const jwt = localStorage.getItem("jwt");
 if (jwt) {
@@ -7,6 +8,7 @@ if (jwt) {
 }
 
 export function Login() {
+  const { setCurrentUser } = useContext(UserContext);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (event) => {
@@ -19,8 +21,18 @@ export function Login() {
         console.log(response.data);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
+        
+        axios.get("http://localhost:3000/users/current_user.json")
+          .then((userResponse) => {
+            // console.log(userResponse.data); 
+            setCurrentUser(userResponse.data); 
+          })
+          .catch((error) => {
+            console.error("Error fetching current user:", error);
+          });
+
         event.target.reset();
-        window.location.href = "merchlounge";
+        window.location.href = "/merchlounge";
       })
       .catch((error) => {
         console.log(error.response);
