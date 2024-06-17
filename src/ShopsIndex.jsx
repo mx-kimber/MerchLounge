@@ -6,7 +6,7 @@ export function ShopsIndex(props) {
     <div className='#'>
       <h1>All shops</h1>
 
-      <div className='shops-container outline'>
+      <div className='shops-container'>
         
           {props.shops.map((shop) => (
             <div key={shop.id} className='shop-item'>

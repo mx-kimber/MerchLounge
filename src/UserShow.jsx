@@ -1,16 +1,31 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
+import UserUpdate from './UserUpdate';
+import { Modal } from './Modal';
 
 export function UserShow() {
   const { currentUser } = useContext(UserContext);
-
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  
   useEffect(() => {
     console.log('Current User:', currentUser);
   }, [currentUser]);
 
   if (!currentUser) {
     return <div>Loading...</div>;
-  }
+
+  }  
+  const handleUpdateModal= () => {
+    setModalContent(<UserUpdate />);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
+  
 
   return (
     <div className='#'>
@@ -20,7 +35,12 @@ export function UserShow() {
       <p>Phone Number: {currentUser.phone_number}</p>
       <p>Email: {currentUser.email}</p>
       <p>Seller: {currentUser.seller ? "Yes" : "No"}</p>
-    </div>
+      <button onClick={handleUpdateModal}>Update Info</button>
+      
+    <Modal show={modalVisible} onClose={handleCloseModal}>
+        {modalContent}
+      </Modal>
+</div>
   );
 }
 

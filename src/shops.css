@@ -1,20 +1,22 @@
 .shops-container {
-  padding: 10px;
+  padding: 5px;
   display: flex;
-  gap:10px
+  gap:10px;
+  /* border: 2pt solid red */
 }
 
 .shop-item {
   max-width:20%;
   max-height:20%;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   display: flex;
 }
+
 .shop-item img {
   width: 100%;
-  height:auto;
-  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 5px;
 }
 

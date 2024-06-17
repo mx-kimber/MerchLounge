@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
-import { useNavigate } from 'react-router-dom';
 
 export function UserUpdate() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -40,8 +39,9 @@ export function UserUpdate() {
     axios.patch(`http://localhost:3000/users/${currentUser.id}.json`, formData)
       .then((response) => {
         setCurrentUser(response.data);
-        alert('Account updated successfully!');
-        navigate('/account_settings');
+        // alert('Account updated successfully!');
+        event.target.reset();
+        window.location.href = "/account_settings";
       })
       .catch((error) => {
         console.error(error);
