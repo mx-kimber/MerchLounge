@@ -1,25 +1,47 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export function UserUpdate() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    phone_number: '',
+    email: '',
+    seller: false,
+  });
 
   useEffect(() => {
-    console.log('Current User:', currentUser);
+    if (currentUser) {
+      setFormData({
+        first_name: currentUser.first_name,
+        last_name: currentUser.last_name,
+        phone_number: currentUser.phone_number,
+        email: currentUser.email,
+        seller: currentUser.seller,
+      });
+    }
   }, [currentUser]);
 
-  if (!currentUser) {
-    return <div>Loading...</div>;
-  }
+  const handleChange = (event) => {
+    const { name, type, checked, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const params = new FormData(event.target);
-    axios.patch(`http://localhost:3000/users/${currentUser.id}.json`, params)
+    axios.patch(`http://localhost:3000/users/${currentUser.id}.json`, formData)
       .then((response) => {
         setCurrentUser(response.data);
         alert('Account updated successfully!');
+        navigate('/account_settings');
       })
       .catch((error) => {
         console.error(error);
@@ -27,29 +49,58 @@ export function UserUpdate() {
       });
   };
 
+  if (!currentUser) {
+    return <div>You must be logged in.</div>;
+  }
+
   return (
     <div className="update-account-info">
       <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label>
-          <input defaultValue={currentUser.first_name} name="first_name" type="text" />
+          <input
+            value={formData.first_name}
+            name="first_name"
+            type="text"
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Last Name:</label>
-          <input defaultValue={currentUser.last_name} name="last_name" type="text" />
+          <input
+            value={formData.last_name}
+            name="last_name"
+            type="text"
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Phone Number:</label>
-          <input defaultValue={currentUser.phone_number} name="phone_number" type="text" />
+          <input
+            value={formData.phone_number}
+            name="phone_number"
+            type="text"
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Email:</label>
-          <input defaultValue={currentUser.email} name="email" type="email" />
+          <input
+            value={formData.email}
+            name="email"
+            type="email"
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Seller:</label>
-          <input defaultValue={currentUser.seller} name="seller" type="checkbox" defaultChecked={currentUser.seller} />
+          <input
+            checked={formData.seller}
+            name="seller"
+            type="checkbox"
+            onChange={handleChange}
+          />
         </div>
         <button type="submit">Update Account</button>
       </form>

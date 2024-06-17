@@ -10,7 +10,7 @@ export function AccountSettings() {
       </div>
       <div className='#'>
         <UserShow />
-        <UserUpdate />
+        {/* <UserUpdate /> */}
         {/* <CreateShop /> */}
       </div>
     </div>
