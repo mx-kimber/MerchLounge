@@ -10,6 +10,7 @@ export function ShopCreate({ onCreateShop }) {
       .then((response) => {
         setShops([...shops, response.data]);
         successCallback();
+        window.location.href = "/account_settings"; 
       })
       .catch((error) => {
         console.error('Error creating shop:', error);

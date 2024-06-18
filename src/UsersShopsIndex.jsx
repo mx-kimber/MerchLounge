@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import { Modal } from './Modal';
+import ShopCreate from './ShopCreate';
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
   const { currentUser } = useContext(UserContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   useEffect(() => {
     handleIndexUsersShops();
   }, []);
+
+  const handleShopCreateModal= () => {
+    setModalContent(<ShopCreate />);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
 
   const handleIndexUsersShops = () => {
     axios.get("http://localhost:3000/shops.json")
@@ -22,8 +36,10 @@ export function UsersShopsIndex() {
   };
 
   return (
+    
     <div className='shops-container-col'>
       <h3>Shops</h3>
+      
 
       {currentUser && currentUser.shops && (
         currentUser.shops.map(shop => (
@@ -40,10 +56,14 @@ export function UsersShopsIndex() {
               {shop.description}
             </div> */}
           </div>
-        </div> </div>
-        ))
-      )}
-    </div>
+        </div> 
+      </div>
+      ))
+    )}
+  <div><button onClick={handleShopCreateModal}>Create new shop</button></div>
+    <Modal show={modalVisible} onClose={handleCloseModal}>
+          {modalContent}
+        </Modal></div>
   );
 }
 

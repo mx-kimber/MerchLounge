@@ -14,7 +14,7 @@ export function AccountSettings() {
       </div>
       <div className="#">
         <UsersShopsIndex />
-        <ShopCreate />
+        
       </div>
     </div>
   );
