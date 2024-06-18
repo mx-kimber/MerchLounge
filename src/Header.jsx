@@ -12,18 +12,22 @@ export function Header() {
   const navigate = useNavigate();
 
   const handleShowSignup = () => {
-    setModalContent(<Signup />);
+    setModalContent(<Signup onClose={handleCloseModal} />);
     setModalVisible(true);
   };
 
   const handleShowLogin = () => {
-    setModalContent(<Login />);
+    setModalContent(<Login onClose={handleCloseModal} />);
     setModalVisible(true);
   };
 
   const handleCloseModal = () => {
     setModalVisible(false);
     setModalContent(null);
+  };
+
+  const handleNavToHome = () => {
+    navigate("/MerchLounge");
   };
 
   const handleNavToUserSettings = () => {
@@ -40,12 +44,9 @@ export function Header() {
     );
   } else {
     authenticationLinks = (
-
       <div className="container-row">
         <LogoutLink />
-        <button onClick={handleNavToUserSettings}>
-          Account Settings
-        </button>
+        <button onClick={handleNavToUserSettings}>Account Settings</button>
       </div>
     );
   }
@@ -56,8 +57,8 @@ export function Header() {
         <div>{authenticationLinks}</div>
       </div>
 
-      <div className="logo-container">
-        <div className="container">
+      <div className="logo-container" >
+        <div className="container" onClick={handleNavToHome} style={{ cursor: "pointer" }}>
           <div className="logo-M-font-100">M</div>
           <div className="erchLounge-container">
             <div className="logo-font-30">erch</div>
@@ -73,3 +74,5 @@ export function Header() {
     </header>
   );
 }
+
+export default Header;
