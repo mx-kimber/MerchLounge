@@ -2,7 +2,20 @@
   padding: 5px;
   display: flex;
   gap:10px;
-  /* border: 2pt solid red */
+  border: 2pt solid green
+}
+
+.shops-container-col {
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
+.user-shops-container {
+display: flex;
+align-items: flex-end;
+gap:5px
+
 }
 
 .shop-item {
@@ -20,3 +33,8 @@
   border-radius: 5px;
 }
 
+.user-shops img {
+  display: flex;
+  width:80px;
+  flex-direction: row;
+}

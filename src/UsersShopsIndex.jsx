@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 
-export function UsersShopsIndex(props) {
+export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
   const { currentUser } = useContext(UserContext);
 
@@ -21,24 +21,26 @@ export function UsersShopsIndex(props) {
       });
   };
 
-
   return (
-    <div className='shops-container'>
-      <h1>Shops</h1>
+    <div className='shops-container-col'>
+      <h3>Shops</h3>
 
       {currentUser && currentUser.shops && (
         currentUser.shops.map(shop => (
-         <div key={shop.id} className='shop-item'>
-           <div>
+         <div key={shop.id} className='#'>
+           <div className='user-shops'>
+            <div className="user-shops-container">
+             
              <img src={shop.image} alt={shop.shop_name} />
-            <div>
+            
+           <div className='#'>
               {shop.shop_name}
-            </div>
-            <div>
+           </div>
+            {/* <div>
               {shop.description}
-            </div>
+            </div> */}
           </div>
-        </div>
+        </div> </div>
         ))
       )}
     </div>

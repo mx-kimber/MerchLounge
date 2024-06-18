@@ -43,7 +43,7 @@ body {
   place-items: flex-start;
   
   min-height: 100%;
-  border: 4pt solid red;
+  /* border: 4pt solid red; */
   
 }
 
@@ -60,4 +60,8 @@ body {
 
 .outline {
   border: 2pt solid red;
+}
+
+.outline2 {
+  border: 2pt solid rgb(1, 251, 255);
 }
