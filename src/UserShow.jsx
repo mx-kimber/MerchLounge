@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
 import UserUpdate from './UserUpdate';
 import { Modal } from './Modal';
+import AccountDelete from './AccountDelete';
 
 export function UserShow() {
   const { currentUser } = useContext(UserContext);
@@ -25,6 +26,11 @@ export function UserShow() {
     setModalVisible(false);
     setModalContent(null);
   };
+
+  const handleAccountDelete = () => {
+    setModalVisible(true);
+    setModalContent(<AccountDelete />);
+  }
   
 
   return (
@@ -36,10 +42,11 @@ export function UserShow() {
       <p>Email: {currentUser.email}</p>
       <p>Seller: {currentUser.seller ? "Yes" : "No"}</p>
       <button onClick={handleUpdateModal}>Update Info</button>
-      
+      <button onClick={handleAccountDelete}>Delete Account</button>
     <Modal show={modalVisible} onClose={handleCloseModal}>
         {modalContent}
       </Modal>
+    
 </div>
   );
 }
