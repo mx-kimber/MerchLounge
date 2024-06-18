@@ -1,20 +1,21 @@
 import React from 'react';
 import UserShow from './UserShow';
-import UserUpdate from './UserUpdate';
+import UsersShopsIndex from './UsersShopsIndex';
 
 export function AccountSettings() {
   return (
-    <div className='#'>
-      <div className='#'>
+    <div className="#">
+      <div className="#">
         Account Settings
       </div>
-      <div className='#'>
+      <div className="#">
         <UserShow />
-        {/* <UserUpdate /> */}
-        {/* <CreateShop /> */}
+      </div>
+      <div className="#">
+        <UsersShopsIndex />
       </div>
     </div>
-  )
+  );
 }
 
 export default AccountSettings;
