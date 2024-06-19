@@ -9,6 +9,8 @@ export function AccountDelete() {
     console.log("handleDestroyAccount", currentUser);
     axios.delete(`http://localhost:3000/users/${currentUser.id}.json`)
       .then((response) => {
+        delete axios.defaults.headers.common["Authorization"];
+        localStorage.removeItem("jwt");
         setCurrentUser(null);
         window.location.href = "/merchlounge"; 
       })
@@ -24,7 +26,7 @@ export function AccountDelete() {
       </div>
       <button onClick={handleDestroyAccount}>Yes, delete my account.</button> 
     </div>
-  )
+  );
 }
 
 export default AccountDelete;
