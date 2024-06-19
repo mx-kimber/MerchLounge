@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { UserContext } from './UserContext';
+import axios from 'axios';
 
-export function ShopDelete() {
+export function ShopDelete({ shopId, onDeleteSuccess }) {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const handleDestroyShop = () => {
+    console.log("handleDestroyShop", shopId);
+    axios.delete(`http://localhost:3000/shops/${shopId}.json`)
+      .then((response) => {
+       
+        const updatedShops = currentUser.shops.filter(shop => shop.id !== shopId);
+        setCurrentUser({ ...currentUser, shops: updatedShops });
+        
+        if (onDeleteSuccess) {
+          onDeleteSuccess();
+        }
+        window.location.href = "/merchlounge"; 
+      })
+      .catch(error => {
+        console.error("There was an error deleting the shop!", error);
+      });
+  };
+
   return (
-    <div>This will permanently delete this shop. Do you wish to proceed? </div>
-  )
+    <div className='container'>
+      <div>
+        This will permanently delete this shop. Do you wish to proceed?
+      </div>
+      <button onClick={handleDestroyShop}>Yes, delete this shop.</button> 
+    </div>
+  );
 }
 
-export default ShopDelete
+export default ShopDelete;
+
