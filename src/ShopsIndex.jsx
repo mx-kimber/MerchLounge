@@ -18,8 +18,8 @@ export function ShopsIndex(props) {
   useEffect(handleIndexShops, []);
 
   return (
-
-      <div className='shops-container'>      
+    <div className='container-col'>
+      <div className='container-row'>      
         {shops.map((shop) => (
           <div key={shop.id} className='shop-item'>
             <img src={shop.image} alt={shop.shop_name} />
@@ -29,6 +29,7 @@ export function ShopsIndex(props) {
           </div>
         ))}
       </div>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ export function MerchLounge({ shops }) {
   
     <div> 
       <h2>Shops</h2>
-      <div className="container-row">
+      <div className="#">
         <ShopsIndex shops={shops} />
       </div>
     </div>

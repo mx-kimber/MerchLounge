@@ -42,10 +42,10 @@ export function UsersShopsIndex() {
   };
 
   return (
-    <div className='shops-container-col'>
+    <div className='container-col'>
       <div className='#'>
-        <h2>Shops</h2>
-        <div>
+        
+        <div><h2>Shops</h2>
           <button onClick={handleShopCreateModal}>Create new shop</button>
         </div>
       </div>
@@ -57,7 +57,7 @@ export function UsersShopsIndex() {
               <img src={shop.image} alt={shop.shop_name} />
               <div className='container-col'>
                 <div>{shop.shop_name}</div>
-                <div>{shop.description}</div>
+                {/* <div>{shop.description}</div> */}
               </div>
               <div>
                 <button onClick={handleShopDeletion}>Remove shop</button>

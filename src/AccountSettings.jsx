@@ -5,16 +5,16 @@ import UsersShopsIndex from './UsersShopsIndex';
 
 export function AccountSettings() {
   return (
-    <div className="container-row2">
-      <div className="container-row outline">
+    <div className="#">
+      <div className="#">
         <UserShow />
       </div>
-      <div className="container-row outline">
+      <div className="#">
         <UsersShopsIndex />
       </div>
-      <div className="container-row outline">
+      {/* <div className="container-row">
         Shops info products
-      </div>
+      </div> */}
     </div>
   );
 }
