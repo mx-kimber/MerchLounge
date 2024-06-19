@@ -3,7 +3,7 @@
   display: flex;
   gap:10px;
   flex-wrap: wrap;
-  border: 2pt solid green;
+
 }
 
 .shops-container-col {
@@ -12,11 +12,13 @@
   gap:5px;
 }
 
-.user-shops-container {
+.user-shops {
 display: flex;
 align-items: flex-end;
-gap:5px
-
+gap:5px;
+background-color: rgb(221, 222, 245);
+padding:10px;
+border-radius: 10px;
 }
 
 .shop-item {
@@ -31,11 +33,24 @@ gap:5px
 .shop-item img {
   width: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .user-shops img {
   display: flex;
   width:80px;
   flex-direction: row;
+  padding:5px;
+  border: 1pt solid black;
+  border-radius: 20px;
+  background-color: #9c9c9c;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  align-content: flex;
+  justify-content: flex-start;
+  border: 2pt solid green;
+  width:100%;
 }

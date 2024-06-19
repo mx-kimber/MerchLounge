@@ -37,14 +37,14 @@ export function Header() {
   let authenticationLinks;
   if (localStorage.jwt === undefined) {
     authenticationLinks = (
-      <div className="container-row">
+      <div className="nav-links">
         <button onClick={handleShowLogin}>Login</button>
         <button onClick={handleShowSignup}>Signup</button>
       </div>
     );
   } else {
     authenticationLinks = (
-      <div className="container-row">
+      <div className="nav-links">
         <LogoutLink />
         <button onClick={handleNavToUserSettings}>Account Settings</button>
       </div>
@@ -58,7 +58,7 @@ export function Header() {
       </div>
 
       <div className="logo-container" >
-        <div className="container" onClick={handleNavToHome} style={{ cursor: "pointer" }}>
+        <div className="m-logo" onClick={handleNavToHome} style={{ cursor: "pointer" }}>
           <div className="logo-M-font-100">M</div>
           <div className="erchLounge-container">
             <div className="logo-font-30">erch</div>

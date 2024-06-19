@@ -5,14 +5,11 @@ import ShopCreate  from './ShopCreate';
 
 export function AccountSettings() {
   return (
-    <div className="#">
-      <div className="#">
-        Account Settings
-      </div>
-      <div className="#">
+    <div className="container-row2">
+      <div className="container-row outline">
         <UserShow />
       </div>
-      <div className="#">
+      <div className="container-row outline">
         <UsersShopsIndex />
         
       </div>

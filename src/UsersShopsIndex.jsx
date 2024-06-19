@@ -38,18 +38,20 @@ export function UsersShopsIndex() {
   return (
     
     <div className='shops-container-col'>
-      <h3>Shops</h3>
-      
-
+      <div className='#'>
+        <h2>Shops</h2>
+      <div>
+        <button onClick={handleShopCreateModal}>Create new shop</button></div>
+      </div>
       {currentUser && currentUser.shops && (
         currentUser.shops.map(shop => (
          <div key={shop.id} className='#'>
            <div className='user-shops'>
-            <div className="user-shops-container">
+           
              
              <img src={shop.image} alt={shop.shop_name} />
             
-           <div className='#'>
+           <div className='outline'>
               {shop.shop_name}
            </div>
             {/* <div>
@@ -57,10 +59,10 @@ export function UsersShopsIndex() {
             </div> */}
           </div>
         </div> 
-      </div>
+     
       ))
     )}
-  <div><button onClick={handleShopCreateModal}>Create new shop</button></div>
+  
     <Modal show={modalVisible} onClose={handleCloseModal}>
           {modalContent}
         </Modal></div>

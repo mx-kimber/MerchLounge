@@ -34,13 +34,13 @@ export function UserShow() {
   
 
   return (
-    <div className='#'>
-      <h1>Account Info</h1>
-      <p>First Name: {currentUser.first_name}</p>
-      <p>Last Name: {currentUser.last_name}</p>
-      <p>Phone Number: {currentUser.phone_number}</p>
-      <p>Email: {currentUser.email}</p>
-      <p>Seller: {currentUser.seller ? "Yes" : "No"}</p>
+    <div className='container-col'>
+      <h3>Account Info</h3>
+      <div>First Name: {currentUser.first_name}</div>
+      <div>Last Name: {currentUser.last_name}</div>
+      <div>Phone Number: {currentUser.phone_number}</div>
+      <div>Email: {currentUser.email}</div>
+      <div>Seller: {currentUser.seller ? "Yes" : "No"}</div>
       <button onClick={handleUpdateModal}>Update Info</button>
       <button onClick={handleAccountDelete}>Delete Account</button>
     <Modal show={modalVisible} onClose={handleCloseModal}>
