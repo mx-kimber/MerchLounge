@@ -3,6 +3,7 @@ import axios from 'axios';
 import { UserContext } from './UserContext';
 import { Modal } from './Modal';
 import ShopCreate from './ShopCreate';
+import ShopDelete from './ShopDelete';
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -14,8 +15,13 @@ export function UsersShopsIndex() {
     handleIndexUsersShops();
   }, []);
 
-  const handleShopCreateModal= () => {
+  const handleShopCreateModal = () => {
     setModalContent(<ShopCreate />);
+    setModalVisible(true);
+  };
+
+  const handleShopDeletion = () => {
+    setModalContent(<ShopDelete />);
     setModalVisible(true);
   };
 
@@ -36,36 +42,35 @@ export function UsersShopsIndex() {
   };
 
   return (
-    
     <div className='shops-container-col'>
       <div className='#'>
         <h2>Shops</h2>
-      <div>
-        <button onClick={handleShopCreateModal}>Create new shop</button></div>
+        <div>
+          <button onClick={handleShopCreateModal}>Create new shop</button>
+        </div>
       </div>
+
       {currentUser && currentUser.shops && (
         currentUser.shops.map(shop => (
-         <div key={shop.id} className='#'>
-           <div className='user-shops'>
-           
-             
-             <img src={shop.image} alt={shop.shop_name} />
-            
-           <div className='outline'>
-              {shop.shop_name}
-           </div>
-            {/* <div>
-              {shop.description}
-            </div> */}
+          <div key={shop.id} className='#'>
+            <div className='user-shops'>
+              <img src={shop.image} alt={shop.shop_name} />
+              <div className='container-col'>
+                <div>{shop.shop_name}</div>
+                <div>{shop.description}</div>
+              </div>
+              <div>
+                <button onClick={handleShopDeletion}>Remove shop</button>
+              </div>
+            </div>
           </div>
-        </div> 
-     
-      ))
-    )}
-  
-    <Modal show={modalVisible} onClose={handleCloseModal}>
-          {modalContent}
-        </Modal></div>
+        ))
+      )}
+
+      <Modal show={modalVisible} onClose={handleCloseModal}>
+        {modalContent}
+      </Modal>
+    </div>
   );
 }
 

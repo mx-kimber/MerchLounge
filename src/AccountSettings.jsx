@@ -1,7 +1,7 @@
 import React from 'react';
 import UserShow from './UserShow';
 import UsersShopsIndex from './UsersShopsIndex';
-import ShopCreate  from './ShopCreate';
+
 
 export function AccountSettings() {
   return (
@@ -11,7 +11,9 @@ export function AccountSettings() {
       </div>
       <div className="container-row outline">
         <UsersShopsIndex />
-        
+      </div>
+      <div className="container-row outline">
+        Shops info products
       </div>
     </div>
   );
