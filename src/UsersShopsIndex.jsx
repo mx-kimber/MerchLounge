@@ -4,6 +4,7 @@ import { UserContext } from './UserContext';
 import { Modal } from './Modal';
 import ShopCreate from './ShopCreate';
 import ShopDelete from './ShopDelete';
+import ShopShow from './ShopShow';
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -22,6 +23,11 @@ export function UsersShopsIndex() {
 
   const handleShopDeletion = () => {
     setModalContent(<ShopDelete />);
+    setModalVisible(true);
+  };
+
+  const handleShopShowModal = (shop) => {
+    setModalContent(<ShopShow shop={shop} />);
     setModalVisible(true);
   };
 
@@ -44,7 +50,6 @@ export function UsersShopsIndex() {
   return (
     <div className='container-col'>
       <div className='#'>
-        
         <div><h2>Shops</h2>
           <button onClick={handleShopCreateModal}>Create new shop</button>
         </div>
@@ -54,7 +59,7 @@ export function UsersShopsIndex() {
         currentUser.shops.map(shop => (
           <div key={shop.id} className='#'>
             <div className='user-shops'>
-              <img src={shop.image} alt={shop.shop_name} />
+              <img src={shop.image} alt={shop.shop_name} onClick={() => handleShopShowModal(shop)} style={{ cursor: 'pointer' }} />
               <div className='container-col'>
                 <div>{shop.shop_name}</div>
                 {/* <div>{shop.description}</div> */}
