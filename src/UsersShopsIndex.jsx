@@ -5,6 +5,7 @@ import { Modal } from './Modal';
 import ShopCreate from './ShopCreate';
 import ShopDelete from './ShopDelete';
 import ShopShow from './ShopShow';
+import ShopUpdate from './ShopUpdate'
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -21,15 +22,20 @@ export function UsersShopsIndex() {
     setModalVisible(true);
   };
 
-  const handleShopDeletion = () => {
-    setModalContent(<ShopDelete />);
-    setModalVisible(true);
-  };
 
+ 
+  const handleAddProductsToShop = () => {
+    setModalContent(null);
+    setModalVisible(true);
+  }
   const handleShopShowModal = (shop) => {
     setModalContent(<ShopShow shop={shop} />);
     setModalVisible(true);
   };
+  const handleShopEdit = () => {
+    setModalContent(<ShopUpdate/>);
+    setModalVisible(true);
+  }
 
   const handleCloseModal = () => {
     setModalVisible(false);
@@ -64,8 +70,16 @@ export function UsersShopsIndex() {
                 <div>{shop.shop_name}</div>
                 {/* <div>{shop.description}</div> */}
               </div>
-              <div>
-                <button onClick={handleShopDeletion}>Remove shop</button>
+              <div className='container-col'>
+                {/* <div>
+                  <button onClick={handleShopDeletion}>Remove shop</button>
+                </div> */}
+                <div>
+                  <button onClick={handleAddProductsToShop}>Add products</button>
+                </div>
+                <div>
+                  <button onClick={handleShopEdit}>Edit shop</button>
+                </div>
               </div>
             </div>
           </div>
