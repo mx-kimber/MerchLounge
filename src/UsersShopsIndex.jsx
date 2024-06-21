@@ -5,7 +5,7 @@ import { Modal } from './Modal';
 import ShopCreate from './ShopCreate';
 import ShopDelete from './ShopDelete';
 import ShopShow from './ShopShow';
-import ShopUpdate from './ShopUpdate'
+import ShopUpdate from './ShopUpdate';
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -22,20 +22,25 @@ export function UsersShopsIndex() {
     setModalVisible(true);
   };
 
-
- 
   const handleAddProductsToShop = () => {
     setModalContent(null);
     setModalVisible(true);
-  }
+  };
+
   const handleShopShowModal = (shop) => {
     setModalContent(<ShopShow shop={shop} />);
     setModalVisible(true);
   };
-  const handleShopEdit = () => {
-    setModalContent(<ShopUpdate/>);
+
+  const handleShopEditModal = (shop) => {
+    setModalContent(<ShopUpdate shop={shop} onUpdateShop={handleUpdateShop} />);
     setModalVisible(true);
-  }
+  };
+
+  const handleShopDeletion = (shopId) => {
+    setModalContent(<ShopDelete shopId={shopId} onDeleteSuccess={() => handleIndexUsersShops()} />);
+    setModalVisible(true);
+  };
 
   const handleCloseModal = () => {
     setModalVisible(false);
@@ -53,6 +58,10 @@ export function UsersShopsIndex() {
       });
   };
 
+  const handleUpdateShop = (updatedShop) => {
+    setShops(shops.map(shop => (shop.id === updatedShop.id ? updatedShop : shop)));
+  };
+
   return (
     <div className='container-col'>
       <div className='#'>
@@ -65,20 +74,24 @@ export function UsersShopsIndex() {
         currentUser.shops.map(shop => (
           <div key={shop.id} className='#'>
             <div className='user-shops'>
-              <img src={shop.image} alt={shop.shop_name} onClick={() => handleShopShowModal(shop)} style={{ cursor: 'pointer' }} />
+              <img
+                src={shop.image}
+                alt={shop.shop_name}
+                onClick={() => handleShopShowModal(shop)}
+                style={{ cursor: 'pointer' }}
+              />
               <div className='container-col'>
                 <div>{shop.shop_name}</div>
-                {/* <div>{shop.description}</div> */}
               </div>
               <div className='container-col'>
-                {/* <div>
-                  <button onClick={handleShopDeletion}>Remove shop</button>
-                </div> */}
                 <div>
-                  <button onClick={handleAddProductsToShop}>Add products</button>
+                  <button onClick={() => handleAddProductsToShop()}>Add products</button>
                 </div>
                 <div>
-                  <button onClick={handleShopEdit}>Edit shop</button>
+                  <button onClick={() => handleShopEditModal(shop)}>Edit shop</button>
+                </div>
+                <div>
+                  <button onClick={() => handleShopDeletion(shop.id)}>Remove shop</button>
                 </div>
               </div>
             </div>
