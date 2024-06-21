@@ -8,10 +8,17 @@ export function Modal({ show, onClose, children }) {
   return (
     <div className="modal-background">
       <section className="modal-main">
-        {children}
+        <div className="container-col align-right">
         <button className="close" type="button" onClick={onClose}>
           X
         </button>
+        </div>
+        <div className="container-col align-center">
+          <div className="container-col align-center">
+        {children}
+        </div>
+        </div>
+        
       </section>
     </div>
   );

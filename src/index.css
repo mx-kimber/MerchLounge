@@ -31,17 +31,17 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   transition: box-shadow 0.3s ease;
 }
 
 button:hover {
-  box-shadow: 0 6px 8px rgba(135, 6, 6, 0.2);
+  /* box-shadow: 0 6px 8px rgba(135, 6, 6, 0.2); */
   background-color: blue;
 }
 
 button:active {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color:  blue
 }
 
 body {
@@ -61,15 +61,26 @@ h2 {
   display: flex;
   flex-direction: column;
   gap:5px;
-  /* width:100% */
+  width:100%
 }
 
 .container-row {
   display: flex;
   flex-direction: row;
   /* border: 1pt solid black; */
-  gap:5px
+  gap:5px;
+  width:100%
+}
 
+.align-left {
+  align-items: flex-start;
+
+}
+.align-center {
+  align-items: center;
+}
+.align-right {
+  align-items: flex-end;
 }
 
 .outline {

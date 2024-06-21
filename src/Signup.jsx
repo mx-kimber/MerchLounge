@@ -22,14 +22,15 @@ export function Signup() {
   };
 
   return (
-    <div id="signup">
+    <div className='container-col align-center' id="signup">
       <h1>Signup</h1>
-      <ul>
+     
         {errors.map((error) => (
           <li key={error}>{error}</li>
         ))}
-      </ul>
+      
       <form onSubmit={handleSubmit}>
+      <div className='container-col align-right'>
         <div>
           First Name: <input name="first_name" type="text" />
         </div>
@@ -37,7 +38,7 @@ export function Signup() {
           Last Name: <input name="last_name" type="text" />
         </div>
         <div>
-          Phone Number: <input name="phone_number" type="text" />
+          Phone: <input name="phone_number" type="text" />
         </div>
         <div>
           Email: <input name="email" type="email" />
@@ -50,7 +51,7 @@ export function Signup() {
         </div>
         <div>
           Seller: <input name="seller" type="checkbox" />
-        </div>
+        </div></div>
         <button type="submit">Signup</button>
       </form>
     </div>

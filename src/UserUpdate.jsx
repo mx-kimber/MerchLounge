@@ -54,11 +54,14 @@ export function UserUpdate() {
   }
 
   return (
-    <div className="update-account-info">
+    <div className='container-col align-center'>
       <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
+        <div className='container-col align-center'></div>
+        <div className='container-col align-right'>
+       
         <div>
-          <label>First Name:</label>
+          <label>First Name: </label>
           <input
             value={formData.first_name}
             name="first_name"
@@ -67,7 +70,7 @@ export function UserUpdate() {
           />
         </div>
         <div>
-          <label>Last Name:</label>
+          <label>Last Name: </label>
           <input
             value={formData.last_name}
             name="last_name"
@@ -76,7 +79,7 @@ export function UserUpdate() {
           />
         </div>
         <div>
-          <label>Phone Number:</label>
+          <label>Phone: </label>
           <input
             value={formData.phone_number}
             name="phone_number"
@@ -85,7 +88,7 @@ export function UserUpdate() {
           />
         </div>
         <div>
-          <label>Email:</label>
+          <label>Email: </label>
           <input
             value={formData.email}
             name="email"
@@ -94,7 +97,7 @@ export function UserUpdate() {
           />
         </div>
         <div>
-          <label>Seller:</label>
+          <label>Seller: </label>
           <input
             checked={formData.seller}
             name="seller"
@@ -103,8 +106,9 @@ export function UserUpdate() {
           />
         </div>
         <button type="submit">Update Account</button>
-      </form>
+      </div></form>
     </div>
+    
   );
 }
 

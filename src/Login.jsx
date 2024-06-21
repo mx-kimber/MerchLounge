@@ -41,20 +41,21 @@ export function Login() {
   };
 
   return (
-    <div id="login">
+    <div className='container-col align-center' id="login">
       <h1>Login</h1>
-      <ul>
+     
         {errors.map((error) => (
           <li key={error}>{error}</li>
         ))}
-      </ul>
+     
       <form onSubmit={handleSubmit}>
+        <div className="container-col align-right">
         <div>
           Email: <input name="email" type="email" />
         </div>
         <div>
           Password: <input name="password" type="password" />
-        </div>
+        </div></div>
         <button type="submit">Login</button>
       </form>
     </div>

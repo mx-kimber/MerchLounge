@@ -7,28 +7,31 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .modal-main {
   position: fixed;
   border-radius: 20px;
-  background: rgba(52, 52, 231, 0.878);
-  padding:30px;
+  background: rgb(0, 157, 255);
+  padding:40px;
   height: auto;
-  width:60%;
-  top: 50%;
+  width:auto;
+  top: 30%;
   left: 50%;
   transform: translate(-50%,-50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width:900px;
   
 }
 
-.modal-main button.close {
-  font-size: 2em;
-  background: none;
-  border: none;
-  position: absolute;
-  top: 0em;
-  right: 0.2em;
-  color: rgb(0, 0, 0)
+button.close {
+  border: 1pt solid black;
+  border-top-right-radius: 10px;
+  color: rgb(255, 255, 255);
+  width: auto;
+  display: flex;
+  margin-top:-50px;
+  margin-right:-50px;
 }

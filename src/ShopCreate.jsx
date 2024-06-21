@@ -25,9 +25,10 @@ export function ShopCreate({ onCreateShop }) {
   };
 
   return (
-    <div>
+    <div className='container-col align-center'>
       <h1>New Shop</h1>
       <form onSubmit={handleSubmit}>
+      <div className="container-col align-right">
         <div>
           Shop Name: <input name="shop_name" type="text" required />
         </div>
@@ -36,7 +37,7 @@ export function ShopCreate({ onCreateShop }) {
         </div>
         <div>
           Logo/Image: <input name="image" type="text" required />
-        </div>
+        </div></div>
         <button type="submit">Create Shop</button>
       </form>
     </div>
