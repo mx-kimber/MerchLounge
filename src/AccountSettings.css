@@ -1,0 +1,29 @@
+.account-settings-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  padding: 20px;
+  color:black
+}
+
+.user-show-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.users-shops-index-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  color: black
+}
+
+
+@media (max-width: 768px) {
+  .account-settings-container {
+    grid-template-columns: 1fr; 
+  }
+}

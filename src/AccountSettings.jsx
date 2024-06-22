@@ -1,25 +1,23 @@
 import React from 'react';
 import UserShow from './UserShow';
 import UsersShopsIndex from './UsersShopsIndex';
-
+import "./AccountSettings.css"
 
 export function AccountSettings() {
   return (
-    <div className="#">
-      <div className="#">
+    <div className="account-settings-container">
+      <div className="user-show-container">
         <UserShow />
       </div>
-      <div className="#">
+      <div className="users-shops-index-container">
         <UsersShopsIndex />
       </div>
-      {/* <div className="container-row">
-        Shops info products
-      </div> */}
     </div>
   );
 }
 
 export default AccountSettings;
+
 
 
 // note to self: add button for UserUpdate and CreateShop on modals 
