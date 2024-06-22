@@ -1,3 +1,4 @@
+import React from "react";
 import "./Modal.css";
 
 export function Modal({ show, onClose, children }) {
@@ -8,17 +9,12 @@ export function Modal({ show, onClose, children }) {
   return (
     <div className="modal-background">
       <section className="modal-main">
-        <div className="container-col align-right">
         <button className="close" type="button" onClick={onClose}>
-          X
+          &times;
         </button>
+        <div className="modal-content">
+          {children}
         </div>
-        <div className="container-col align-center">
-          <div className="container-col align-center">
-        {children}
-        </div>
-        </div>
-        
       </section>
     </div>
   );
