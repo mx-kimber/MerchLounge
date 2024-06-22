@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import { Modal } from './Modal';
+import AccountDelete from './AccountDelete';
 
 export function UserUpdate() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -34,13 +37,22 @@ export function UserUpdate() {
     }));
   };
 
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
+
+  const handleAccountDelete = () => {
+    setModalVisible(true);
+    setModalContent(<AccountDelete />);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.patch(`http://localhost:3000/users/${currentUser.id}.json`, formData)
       .then((response) => {
         setCurrentUser(response.data);
         // alert('Account updated successfully!');
-        event.target.reset();
         window.location.href = "/account_settings";
       })
       .catch((error) => {
@@ -55,11 +67,9 @@ export function UserUpdate() {
 
   return (
     <div className='container-col align-center'>
-      <h1>Update Account Info</h1>
+    <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
-        <div className='container-col align-center'></div>
-        <div className='container-col align-right'>
-       
+      
         <div>
           <label>First Name: </label>
           <input
@@ -96,19 +106,20 @@ export function UserUpdate() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Seller: </label>
-          <input
-            checked={formData.seller}
-            name="seller"
-            type="checkbox"
-            onChange={handleChange}
-          />
+        <div className='container-col'>
+          <button onClick={handleSubmit} >Update Account</button>
         </div>
-        <button type="submit">Update Account</button>
-      </div></form>
-    </div>
+        <div className='container-col'>
+          <button onClick={handleAccountDelete}>Delete Account</button>
+        </div>
     
+      </form>
+    
+
+      <Modal show={modalVisible} onClose={handleCloseModal}>
+        {modalContent}
+      </Modal>
+    </div>
   );
 }
 
