@@ -90,9 +90,9 @@ export function UsersShopsIndex() {
                 <div>
                   <button onClick={() => handleShopEditModal(shop)}>Edit shop</button>
                 </div>
-                <div>
+                {/* <div>
                   <button onClick={() => handleShopDeletion(shop.id)}>Remove shop</button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

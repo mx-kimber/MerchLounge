@@ -40,7 +40,6 @@ export function UserShow() {
       <div>Last Name: {currentUser.last_name}</div>
       <div>Phone Number: {currentUser.phone_number}</div>
       <div>Email: {currentUser.email}</div>
-      <div>Seller: {currentUser.seller ? "Yes" : "No"}</div>
       <div className='container-row'>
         <button onClick={handleUpdateModal}>Update Info</button>
         <button onClick={handleAccountDelete}>Delete Account</button>

@@ -59,7 +59,7 @@ export function Signup() {
         </ul>
       )}
       <form onSubmit={handleSubmit} autoComplete="off">
-        <div className='container-col align-right'>
+        <div className='container-col align-center'>
           <div>
             <label>First Name:</label>
             <input name="first_name" type="text" autoComplete="off" />
@@ -81,15 +81,16 @@ export function Signup() {
             <input name="password" type="password" autoComplete="new-password" />
           </div>
           <div>
-            <label>Password confirmation:</label>
+            <label>Password:</label>
             <input name="password_confirmation" type="password" autoComplete="new-password" />
           </div>
-          <div>
+          <button type={handleSubmit}>Signup</button>
+          {/* <div>
             <label>Seller:</label>
             <input name="seller" type="checkbox" />
-          </div>
+          </div> */}
         </div>
-        <button type="submit">Signup</button>
+        
       </form>
     </div>
   );

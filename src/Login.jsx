@@ -50,13 +50,16 @@ export function Login() {
      
       <form onSubmit={handleSubmit}>
         <div className="container-col align-right">
-        <div>
-          Email: <input name="email" type="email" />
+          <div>
+            Email: <input name="email" type="email" />
+          </div>
+          <div>
+            Password: <input name="password" type="password" />
+          </div>
+          <div className="container-col">
+            <button className="button" type="submit">Login</button>
+          </div>
         </div>
-        <div>
-          Password: <input name="password" type="password" />
-        </div></div>
-        <button type="submit">Login</button>
       </form>
     </div>
   );
