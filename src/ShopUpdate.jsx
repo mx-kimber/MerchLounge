@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Modal } from './Modal';
 import { ShopDelete } from './ShopDelete';
-import { UserContext } from './UserContext';
 
 export function ShopUpdate({ shop, onUpdateShop }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -39,23 +38,29 @@ export function ShopUpdate({ shop, onUpdateShop }) {
   };
 
   return (
-    <div className='container-col'>
-      <h1>Update Shop</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Name: <input defaultValue={shop.shop_name} name="shop_name" type="text" required />
+    <div className='container-col align-center'>
+      
+        <h1>Update Shop</h1>
+        
+        <div className='container-col align-center'>
+        <form onSubmit={handleSubmit}>
+          <div>
+            Name: <input defaultValue={shop.shop_name} name="shop_name" type="text" required />
+          </div>
+          <div>
+            Logo/Image: <input defaultValue={shop.image} name="image" type="text" required />
+          </div>
+          <div>
+            Description: <input defaultValue={shop.description} name="description" type="text" required />
+          </div>
+          <div>
+            <button className="button" type="submit">Update Shop</button>
+          </div>
+        </form>
         </div>
-        <div>
-          Logo/Image: <input defaultValue={shop.image} name="image" type="text" required />
+          <div className='container-col'>
+            <button onClick={handleShopDeletion}>Remove shop</button>
         </div>
-        <div>
-          Description: <input defaultValue={shop.description} name="description" type="text" required />
-        </div>
-        <button type="submit">Update Shop</button>
-      </form>
-      <div>
-        <button onClick={handleShopDeletion}>Remove shop</button>
-      </div>
       <Modal show={modalVisible} onClose={handleCloseModal}>
         {modalContent}
       </Modal>

@@ -16,7 +16,7 @@ export function ShopDelete({ shopId, onDeleteSuccess }) {
         if (onDeleteSuccess) {
           onDeleteSuccess();
         }
-        window.location.href = "/merchlounge"; 
+        window.location.href = "/account_settings"; 
       })
       .catch(error => {
         console.error("There was an error deleting the shop!", error);
@@ -28,7 +28,9 @@ export function ShopDelete({ shopId, onDeleteSuccess }) {
       <div>
         This will permanently delete this shop. Do you wish to proceed?
       </div>
-      <button onClick={handleDestroyShop}>Yes, delete this shop.</button> 
+      <div className='container-col'>
+          <button onClick={handleDestroyShop}>Yes, delete this shop.</button> 
+      </div>
     </div>
   );
 }

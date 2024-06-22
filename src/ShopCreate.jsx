@@ -37,8 +37,12 @@ export function ShopCreate({ onCreateShop }) {
         </div>
         <div>
           Logo/Image: <input name="image" type="text" required />
-        </div></div>
-        <button type="submit">Create Shop</button>
+        </div>
+        
+          <div className='container-col'>
+            <button className="button" type="submit">Create Shop</button>
+          </div>
+        </div>
       </form>
     </div>
   );

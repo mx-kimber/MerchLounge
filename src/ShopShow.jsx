@@ -13,17 +13,20 @@ export function ShopShow({ shop }) {
       <h1>Shop Information</h1>
       
         <div className='container-row'>
-          <div className='container-col align-right'>
-        <div className='shop-item'>
-          <img src={shop.image} alt={shop.shop_name} />
-        </div></div>
+          <div className='container-col align-center'>
+          <div className='shop-item'>
+            <img src={shop.image} alt={shop.shop_name} />
+          </div>
+        </div>
         <div className='container-col'>
           <div>{shop.shop_name}</div>
           <div>{shop.description}</div>
         </div>
       </div>
+      <div className='container-row'>
+        <button onClick={navigateToShop}>Go Shop!</button>
+      </div>
       
-      <button onClick={navigateToShop}>Go to Shop</button>
     </div>
   );
 }

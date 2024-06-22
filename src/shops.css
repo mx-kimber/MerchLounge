@@ -4,33 +4,34 @@
   height:80px;
   padding: 5px;
   border: 1px solid #ffffff;
-  border-radius: 20%;
+  border-radius: 10px;
   display: flex;
 }
 .shop-item img {
   width: 100%;
-  object-fit:contain;
-  border-radius: 20%;
+  object-fit:fill;
+  border-radius: 10px;
 }
 
 /* /account_settings */
 
 .user-shops {
 display: flex;
-align-items: center;
+/* align-items: center; */
 justify-content: space-between;
 gap:20px;
 background-color: rgb(255, 255, 255);
 padding:10px;
 color:black;
-border-radius: 10px;
+border: 1px solid black;
+border-radius: 5px;;
 }
 .user-shops img {
   display: flex;
   width:80px;
   padding:5px;
   border: 1pt solid black;
-  border-radius: 20%;
+  border-radius: 10%;
   background-color: #9c9c9c;
 }
 

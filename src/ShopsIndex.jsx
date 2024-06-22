@@ -31,7 +31,7 @@ export function ShopsIndex(props) {
 
   return (
     <div className='container-col'>
-      <div className='container-row'>      
+      <div className='container-row width-100 '>      
         {shops.map((shop) => (
           <div key={shop.id} className='shop-item' onClick={() => handleShopShowModal(shop)} style={{ cursor: 'pointer' }}>
             <img src={shop.image} alt={shop.shop_name} />
