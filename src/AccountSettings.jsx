@@ -2,6 +2,7 @@ import React from 'react';
 import UserShow from './UserShow';
 import UsersShopsIndex from './UsersShopsIndex';
 import "./AccountSettings.css"
+import ProductIndex from './ProductIndex';
 
 export function AccountSettings() {
   return (
@@ -11,6 +12,9 @@ export function AccountSettings() {
       </div>
       <div className="users-shops-index-container">
         <UsersShopsIndex />
+      </div>
+      <div className="users-shops-index-container">
+       <ProductIndex />
       </div>
     </div>
   );

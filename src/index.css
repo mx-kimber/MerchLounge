@@ -68,6 +68,10 @@ h2 {
   width:100%
 }
 
+.space-between {
+  justify-content:space-between;
+}
+
 .container-row {
   display: flex;
   flex-direction: row;
