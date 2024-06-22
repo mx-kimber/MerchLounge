@@ -22,7 +22,7 @@ html {
   scroll-behavior: smooth;
 }
 
-button {
+button, .button {
   padding: 15px 20px;
   font-size: 14px;
   color: #fff;
@@ -53,8 +53,12 @@ body {
 }
 
 h2 {
-  /* border: 3pt solid lime; */
   margin: 0;
+}
+
+.width-100 {
+ display: flex;
+ flex-wrap: wrap;
 }
 
 .container-col  {
@@ -67,7 +71,7 @@ h2 {
 .container-row {
   display: flex;
   flex-direction: row;
-  /* border: 1pt solid black; */
+  flex-wrap: wrap;
   gap:5px;
   width:100%
 }

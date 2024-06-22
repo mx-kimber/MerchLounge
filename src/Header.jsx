@@ -38,15 +38,15 @@ export function Header() {
   if (localStorage.jwt === undefined) {
     authenticationLinks = (
       <div className="nav-links">
-        <button onClick={handleShowLogin}>Login</button>
-        <button onClick={handleShowSignup}>Signup</button>
+        <a onClick={handleShowLogin}>Login</a>
+        <a onClick={handleShowSignup}>Signup</a>
       </div>
     );
   } else {
     authenticationLinks = (
       <div className="nav-links">
         <LogoutLink />
-        <button onClick={handleNavToUserSettings}>Account Settings</button>
+        <a onClick={handleNavToUserSettings}>Account Settings</a>
       </div>
     );
   }
