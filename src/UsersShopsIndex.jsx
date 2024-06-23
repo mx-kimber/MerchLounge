@@ -6,6 +6,7 @@ import ShopCreate from './ShopCreate';
 import ShopDelete from './ShopDelete';
 import ShopShow from './ShopShow';
 import ShopUpdate from './ShopUpdate';
+import ShopProducts from './ShopProducts';
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -22,8 +23,8 @@ export function UsersShopsIndex() {
     setModalVisible(true);
   };
 
-  const handleAddProductsToShop = () => {
-    setModalContent(null);
+  const handleShowShopProducts = (shopId) => {
+    setModalContent(<ShopProducts shopId={shopId} />);
     setModalVisible(true);
   };
 
@@ -85,7 +86,7 @@ export function UsersShopsIndex() {
               </div>
               <div className='container-col'>
                 <div>
-                  <button onClick={() => handleAddProductsToShop()}>Add products</button>
+                  <button onClick={() => handleShowShopProducts(shop.id)}>Products</button>
                 </div>
                 <div>
                   <button onClick={() => handleShopEditModal(shop)}>Edit shop</button>
