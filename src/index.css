@@ -104,3 +104,18 @@ h2 {
 .outline2 {
   border: 2pt solid rgb(1, 251, 255);
 }
+
+.align-bottom {
+  justify-content: flex-end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; 
+  }
+}
