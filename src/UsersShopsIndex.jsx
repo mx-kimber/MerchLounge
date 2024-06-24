@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 import { Modal } from './Modal';
@@ -7,6 +7,7 @@ import ShopDelete from './ShopDelete';
 import ShopShow from './ShopShow';
 import ShopUpdate from './ShopUpdate';
 import ShopProducts from './ShopProducts';
+import AllProducts from './AllProducts'; 
 
 export function UsersShopsIndex() {
   const [shops, setShops] = useState([]);
@@ -27,6 +28,11 @@ export function UsersShopsIndex() {
     setModalContent(<ShopProducts shopId={shopId} />);
     setModalVisible(true);
   };
+
+  // const handleShowAllProducts = () => {
+  //   setModalContent(<AllProducts />);
+  //   setModalVisible(true);
+  // };
 
   const handleShopShowModal = (shop) => {
     setModalContent(<ShopShow shop={shop} />);
@@ -65,9 +71,12 @@ export function UsersShopsIndex() {
 
   return (
     <div className='container-col'>
-      <div className='#'>
-        <div><h2>Shops</h2>
-          <button onClick={handleShopCreateModal}>Create new shop</button>
+      <div className=''>
+       
+          <h2>Shops</h2> 
+        <div className='container-col'>
+          <div><button onClick={handleShopCreateModal}>Create new shop</button></div>
+          {/* <div><button onClick={handleShowAllProducts}>Show all products</button> </div> */}
         </div>
       </div>
 
@@ -86,7 +95,7 @@ export function UsersShopsIndex() {
               </div>
               <div className='container-col'>
                 <div>
-                  <button onClick={() => handleShowShopProducts(shop.id)}>Products</button>
+                  <button onClick={() => handleShowShopProducts(shop.id)}>Show products</button> 
                 </div>
                 <div>
                   <button onClick={() => handleShopEditModal(shop)}>Edit shop</button>

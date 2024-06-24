@@ -4,18 +4,26 @@ import UsersShopsIndex from './UsersShopsIndex';
 import "./AccountSettings.css"
 import ProductIndex from './ProductIndex';
 
-export function AccountSettings() {
+export function AccountSettings(props) {
+
+
   return (
     <div className="account-settings-container">
-      <div className="user-show-container">
-        <UserShow />
+      <div className="user-show-container gap-10px">
+        <div>
+          <UserShow />
+        </div>
+      
+        
       </div>
-      <div className="users-shops-index-container">
-        <UsersShopsIndex />
+      
+      <div className="users-shops-index-container"><h2>Seller Dashboard</h2>
+        <div className="users-shops-index-container">
+          
+         <ProductIndex />
+        </div><UsersShopsIndex />
       </div>
-      <div className="users-shops-index-container">
-       <ProductIndex />
-      </div>
+      
     </div>
   );
 }

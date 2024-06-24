@@ -22,13 +22,14 @@ justify-content: space-between;
 gap:20px;
 background-color: rgb(255, 255, 255);
 padding:10px;
-color:black;
+/* color:black; */
 border: 1px solid black;
 border-radius: 5px;;
 }
 .user-shops img {
   display: flex;
   width:80px;
+  height:85px;
   padding:5px;
   border: 1pt solid black;
   border-radius: 10%;

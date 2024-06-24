@@ -69,7 +69,7 @@ export function UserUpdate() {
     <div className='container-col align-center'>
     <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
-      
+      <div className='container-col align-right'>
         <div>
           <label>First Name: </label>
           <input
@@ -106,13 +106,15 @@ export function UserUpdate() {
             onChange={handleChange}
           />
         </div>
-        <div className='container-col'>
+      
+      <div className='container-col'>
+        <div>
           <button onClick={handleSubmit} >Update Account</button>
         </div>
-        <div className='container-col'>
+        <div>
           <button onClick={handleAccountDelete}>Delete Account</button>
         </div>
-    
+ </div></div>
       </form>
     
 

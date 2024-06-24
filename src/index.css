@@ -27,6 +27,8 @@ button, .button {
   font-size: 14px;
   color: #fff;
   width:100%;
+  display: flex;
+  justify-content: center;
   background-color: #007bff;
   border: none;
   border-radius: 5px;
@@ -56,6 +58,10 @@ h2 {
   margin: 0;
 }
 
+.gap-10 {
+  display: flex;
+  gap:10px;
+}
 .width-100 {
  display: flex;
  flex-wrap: wrap;
