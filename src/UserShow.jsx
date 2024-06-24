@@ -3,6 +3,7 @@ import { UserContext } from './UserContext';
 import UserUpdate from './UserUpdate';
 import { Modal } from './Modal';
 import AccountDelete from './AccountDelete';
+import ChangePassword from './ChangePassword';
 
 export function UserShow() {
   const { currentUser } = useContext(UserContext);
@@ -32,6 +33,10 @@ export function UserShow() {
     setModalContent(<AccountDelete />);
   }
   
+  const handleChangePassword = () => {
+    setModalVisible(true);
+    setModalContent(<ChangePassword />);
+  }
 
   return (
     <div className='container-col'>
@@ -42,7 +47,8 @@ export function UserShow() {
       <div>Email: {currentUser.email}</div>
       <div className='container-row'>
         <button onClick={handleUpdateModal}>Update Info</button>
-        <button onClick={handleAccountDelete}>Delete Account</button>
+        {/* <button onClick={handleAccountDelete}>Delete Account</button> */}
+        <button onClick={handleChangePassword}>Password Settings</button>
       </div>
     <Modal show={modalVisible} onClose={handleCloseModal}>
         {modalContent}
