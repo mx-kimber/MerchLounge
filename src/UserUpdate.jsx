@@ -69,52 +69,53 @@ export function UserUpdate() {
     <div className='container-col align-center'>
     <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
-      <div className='container-col align-right'>
-        <div>
-          <label>First Name: </label>
-          <input
-            value={formData.first_name}
-            name="first_name"
-            type="text"
-            onChange={handleChange}
-          />
+        <div className='container-col align-right'>
+          <div>
+            <label>First Name: </label>
+            <input
+              value={formData.first_name}
+              name="first_name"
+              type="text"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Last Name: </label>
+            <input
+              value={formData.last_name}
+              name="last_name"
+              type="text"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Phone: </label>
+            <input
+              value={formData.phone_number}
+              name="phone_number"
+              type="text"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Email: </label>
+            <input
+              value={formData.email}
+              name="email"
+              type="email"
+              onChange={handleChange}
+            />
+          </div>
+        
+          <div className='container-col'>
+            <div>
+              <button onClick={handleSubmit} >Update Account</button>
+            </div>
+            <div>
+              <button onClick={handleAccountDelete}>Delete Account</button>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Last Name: </label>
-          <input
-            value={formData.last_name}
-            name="last_name"
-            type="text"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Phone: </label>
-          <input
-            value={formData.phone_number}
-            name="phone_number"
-            type="text"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Email: </label>
-          <input
-            value={formData.email}
-            name="email"
-            type="email"
-            onChange={handleChange}
-          />
-        </div>
-      
-      <div className='container-col'>
-        <div>
-          <button onClick={handleSubmit} >Update Account</button>
-        </div>
-        <div>
-          <button onClick={handleAccountDelete}>Delete Account</button>
-        </div>
- </div></div>
       </form>
     
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from './UserContext';
-import ProductShow from './ProductShow';
 
-const ProductIndex = () => {
+const ProductIndex = ({ onProductClick }) => {
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -22,21 +22,17 @@ const ProductIndex = () => {
     }
   }, [currentUser]);
 
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProduct(null); 
+  const handleNavigateToDashboard = () => {
+    navigate('/seller_dashboard');
   };
 
   return (
-    <div>
-      {selectedProduct && <ProductShow product={selectedProduct} onClose={handleCloseModal} />}
+    <div className='user-show-container'>
+    
 
-      <div className="container-col">
+      <div className="container-col ">
         {products.map((product) => (
-          <div key={product.id} className='container-row space-between' onClick={() => handleProductClick(product)}>
+          <div key={product.id} className='container-row space-between' onClick={() => onProductClick(product)}>
             <div>
               <img src={product.product_images} alt={product.product_name} />
             </div>

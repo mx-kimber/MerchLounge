@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
 import UserUpdate from './UserUpdate';
 import { Modal } from './Modal';
-import AccountDelete from './AccountDelete';
+// import AccountDelete from './AccountDelete';
 import ChangePassword from './ChangePassword';
 
 export function UserShow() {
@@ -28,32 +28,44 @@ export function UserShow() {
     setModalContent(null);
   };
 
-  const handleAccountDelete = () => {
-    setModalVisible(true);
-    setModalContent(<AccountDelete />);
-  }
+  // const handleAccountDelete = () => {
+  //   setModalVisible(true);
+  //   setModalContent(<AccountDelete />);
+  // }
   
+  // const handleSellerDashboard = () => {
+  //   setModalVisible(true);
+  //   setModalContent(<AccountDelete />);
+  // }
+
   const handleChangePassword = () => {
     setModalVisible(true);
     setModalContent(<ChangePassword />);
   }
 
   return (
+    <div className='inner-container'>
+    <h2>Account Info</h2>
+    <div>
+      {currentUser && (
+      <>
+        <div>{`${currentUser.first_name} ${currentUser.last_name}`}</div>
+        <div>{currentUser.phone_number}</div>
+        <div>{currentUser.email}</div>
+      </>
+    )}
+    </div>
     <div className='container-col'>
-      <h2>Account Info</h2>
-      <div>First Name: {currentUser.first_name}</div>
-      <div>Last Name: {currentUser.last_name}</div>
-      <div>Phone Number: {currentUser.phone_number}</div>
-      <div>Email: {currentUser.email}</div>
-      <div className='container-row'>
+      <div>
         <button onClick={handleUpdateModal}>Update Info</button>
-        {/* <button onClick={handleAccountDelete}>Delete Account</button> */}
+      </div>
+      <div>
         <button onClick={handleChangePassword}>Password Settings</button>
       </div>
+    </div>
     <Modal show={modalVisible} onClose={handleCloseModal}>
         {modalContent}
       </Modal>
-    
 </div>
   );
 }

@@ -95,7 +95,7 @@ export function UsersShopsIndex() {
               </div>
               <div className='container-col'>
                 <div>
-                  <button onClick={() => handleShowShopProducts(shop.id)}>Show products</button> 
+                  <button onClick={() => handleShowShopProducts(shop.id)}>Add products</button> 
                 </div>
                 <div>
                   <button onClick={() => handleShopEditModal(shop)}>Edit shop</button>
