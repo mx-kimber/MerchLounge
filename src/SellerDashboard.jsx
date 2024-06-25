@@ -22,7 +22,7 @@ export function SellerDashboard() {
           <div>
             <ProductIndex onProductClick={handleProductClick} />
           </div>
-          <div className='outline2'>
+          <div className=''>
             <SellerDashboardProductShow product={selectedProduct} onClose={handleCloseModal} />
           </div>
         </div>
