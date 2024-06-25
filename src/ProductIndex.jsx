@@ -2,10 +2,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './UserContext';
+import { Modal } from './Modal';
+import ProductCreate from './ProductCreate';
 
-const ProductIndex = ({ onProductClick }) => {
+export function ProductIndex ({ onProductClick }) {
+  
   const [products, setProducts] = useState([]);
   const { currentUser } = useContext(UserContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,8 +30,17 @@ const ProductIndex = ({ onProductClick }) => {
   const handleNavigateToDashboard = () => {
     navigate('/seller_dashboard');
   };
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
 
+  const handleAddProductModal = () => {
+    setModalVisible(true);
+    setModalContent(<ProductCreate />);
+  };
   return (
+    <div className='container-col gap-10'>
     <div className='user-show-container'>
     
 
@@ -39,13 +53,23 @@ const ProductIndex = ({ onProductClick }) => {
             <div>
               {product.product_name}
             </div>
-            <div>Quantity: {product.quantity}</div>
-            <div>${product.price}</div>
+            <div>{product.quantity}</div>
+            {/* <div>${product.price}</div> */}
           </div>
         ))}
       </div>
+      
+
+      <Modal show={modalVisible} onClose={handleCloseModal}>
+        {modalContent}
+      </Modal>
     </div>
+    <div>
+        <button onClick={handleAddProductModal}>Add a product</button>
+      </div>
+      </div>
   );
+  
 };
 
 export default ProductIndex;
