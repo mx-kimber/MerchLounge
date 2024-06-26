@@ -9,10 +9,9 @@ export function ShopShow({ shop }) {
   };
 
   return (
-    <div className='container-col align-center'>
-      <h1>Shop Information</h1>
+    <div className=''>
       
-        <div className='container-row'>
+        <div className='container-col'>
           <div className='container-col align-center'>
           <div className='shop-item'>
             <img src={shop.image} alt={shop.shop_name} />

@@ -72,8 +72,6 @@ export function UsersShopsIndex() {
   return (
     <div className='container-col'>
       <div className=''>
-       
-          <h2>Shops</h2> 
         <div className='container-col'>
           <div><button onClick={handleShopCreateModal}>Create new shop</button></div>
           {/* <div><button onClick={handleShowAllProducts}>Show all products</button> </div> */}
