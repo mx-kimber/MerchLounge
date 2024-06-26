@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProductShow from './ProductShow';
 import ProductUpdate from './ProductUpdate';
 
-export function SellerDashboardProductShow({ product, onClose }) {
+export function SellerDashboardProductShow({ product, onProductUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleProductUpdateClick = () => {
@@ -11,8 +11,7 @@ export function SellerDashboardProductShow({ product, onClose }) {
 
   const handleUpdateProduct = (updatedProduct) => {
     setIsEditing(false);
-    console.log('Product updated:', updatedProduct);
-    window.location.reload()
+    onProductUpdate(updatedProduct);
   };
 
   const handleCancelUpdate = () => {
@@ -20,32 +19,31 @@ export function SellerDashboardProductShow({ product, onClose }) {
   };
 
   return (
-    <div className='container-col'>
-    <div className='user-show-container'>
-      {isEditing ? (
-        <ProductUpdate 
-          product={product} 
-          onUpdateProduct={handleUpdateProduct} 
-          onCancel={handleCancelUpdate}
-        />
-      ) : (
-        <>
-          {product ? (
-            <>
-              <ProductShow product={product}/>
-              
-            </>
-          ) : (
-            <p>Select a product to see details</p>
-          )}
-        </>
-      )}
-      </div>
-      <div className='container-row justify-bottom'><button onClick={handleProductUpdateClick}>Update Product</button>
-    </div></div>
-    
+    <div className='container-col height-100'>
+      <div className='user-show-container'>
+        {isEditing ? (
+          <ProductUpdate 
+            product={product} 
+            onUpdateProduct={handleUpdateProduct} 
+            onCancel={handleCancelUpdate}
+          />
+        ) : (
+          <>
+            {product ? (
+              <>
+                <ProductShow product={product}/>
+              </>
+            ) : (
+              <p>Select a product to see details</p>
+            )}
+          </>
+        )}
+        
+      </div><div className='container-row justify-bottom'>
+          <button onClick={handleProductUpdateClick}>Update Product</button>
+        </div>
+    </div>
   );
 }
 
 export default SellerDashboardProductShow;
-
