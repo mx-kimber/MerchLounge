@@ -1,47 +1,51 @@
 import React, { useState } from 'react';
 import ProductShow from './ProductShow';
 import ProductUpdate from './ProductUpdate';
-import { Modal } from './Modal';
 
 export function SellerDashboardProductShow({ product, onClose }) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleProductUpdateClick = () => {
-    setModalContent(
-      <ProductUpdate 
-        product={product} 
-        onUpdateProduct={(updatedProduct) => {
-          setModalVisible(false);
-          setModalContent(null);
-          console.log('Product updated:', updatedProduct);
-   
-        }} 
-      />
-    );
-    setModalVisible(true);
+    setIsEditing(true);
   };
 
-  const handleCloseModal = () => {
-    setModalVisible(false);
-    setModalContent(null);
+  const handleUpdateProduct = (updatedProduct) => {
+    setIsEditing(false);
+    console.log('Product updated:', updatedProduct);
+    window.location.reload()
+  };
+
+  const handleCancelUpdate = () => {
+    setIsEditing(false);
   };
 
   return (
+    <div className='container-col'>
     <div className='user-show-container'>
-      {product ? (
-        <>
-          <ProductShow product={product} onClose={onClose} />
-          <button onClick={handleProductUpdateClick}>Update Product</button>
-        </>
+      {isEditing ? (
+        <ProductUpdate 
+          product={product} 
+          onUpdateProduct={handleUpdateProduct} 
+          onCancel={handleCancelUpdate}
+        />
       ) : (
-        <p>Select a product to see details</p>
+        <>
+          {product ? (
+            <>
+              <ProductShow product={product}/>
+              
+            </>
+          ) : (
+            <p>Select a product to see details</p>
+          )}
+        </>
       )}
-      <Modal show={modalVisible} onClose={handleCloseModal}>
-        {modalContent}
-      </Modal>
-    </div>
+      </div>
+      <div className='container-row justify-bottom'><button onClick={handleProductUpdateClick}>Update Product</button>
+    </div></div>
+    
   );
 }
 
 export default SellerDashboardProductShow;
+
