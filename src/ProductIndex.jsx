@@ -5,8 +5,7 @@ import { UserContext } from './UserContext';
 import { Modal } from './Modal';
 import ProductCreate from './ProductCreate';
 
-export function ProductIndex ({ onProductClick }) {
-  
+export function ProductIndex({ onProductClick, onProductsLoaded }) {
   const [products, setProducts] = useState([]);
   const { currentUser } = useContext(UserContext);
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,6 +19,9 @@ export function ProductIndex ({ onProductClick }) {
         .then((response) => {
           console.log(response.data);
           setProducts(response.data);
+          if (onProductsLoaded) {
+            onProductsLoaded(response.data);
+          }
         })
         .catch((error) => {
           console.error('Error fetching products:', error);
@@ -27,9 +29,6 @@ export function ProductIndex ({ onProductClick }) {
     }
   }, [currentUser]);
 
-  const handleNavigateToDashboard = () => {
-    navigate('/seller_dashboard');
-  };
   const handleCloseModal = () => {
     setModalVisible(false);
     setModalContent(null);
@@ -39,37 +38,40 @@ export function ProductIndex ({ onProductClick }) {
     setModalVisible(true);
     setModalContent(<ProductCreate />);
   };
+
   return (
-    <div className='container-col gap-10'>
-    <div className='user-show-container'>
-    
-
-      <div className="container-col ">
-        {products.map((product) => (
-          <div key={product.id} className='container-row space-between' onClick={() => onProductClick(product)}>
-            <div>
-              <img src={product.product_images} alt={product.product_name} />
+    <div className='container-col'>
+      <div className='container-col '>
+        <div className='user-show-container'>
+          {products.map((product) => (
+            <div key={product.id} className='container-row' onClick={() => onProductClick(product)}>
+              <div className='container-row space-between user-show-container '>
+              
+                <div className=''>
+                  <img src={product.product_images} alt={product.product_name} />
+                </div>
+                <div className=''>
+                  {product.product_name}
+                </div>
+                <div className=''>
+                  {product.quantity}
+                </div>
+              </div>
             </div>
-            <div>
-              {product.product_name}
-            </div>
-            <div>{product.quantity}</div>
-            {/* <div>${product.price}</div> */}
-          </div>
-        ))}
-      </div>
-      
-
-      <Modal show={modalVisible} onClose={handleCloseModal}>
-        {modalContent}
-      </Modal>
-    </div>
-    <div>
-        <button onClick={handleAddProductModal}>Add a product</button>
-      </div>
-      </div>
+          ))}
+          
+          
+        </div>
+        <div className='container-row justify-bottom'>
+          <button onClick={handleAddProductModal}>Add a product</button>
+        </div>
+        
+        
+        <Modal show={modalVisible} onClose={handleCloseModal}>
+            {modalContent}
+          </Modal>
+    </div></div>
   );
-  
 };
 
 export default ProductIndex;
