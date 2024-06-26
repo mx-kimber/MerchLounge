@@ -10,28 +10,29 @@ export function SellerDashboard() {
     setSelectedProduct(product);
   };
 
-  const handleCloseModal = () => {
-    setSelectedProduct(null);
+  const handleProductsLoaded = (products) => {
+    if (products.length > 0) {
+      setSelectedProduct(products[0]);
+    }
   };
 
   return (
     <div className='container-col'>
-        <h2>Product Index</h2>
-      <div className='container-row grid '>
-        {/* <div className='container-row'> */}
-          <div>
-            <ProductIndex onProductClick={handleProductClick} />
-          </div>
-          <div className=''>
-            <SellerDashboardProductShow product={selectedProduct} onClose={handleCloseModal} />
-          </div>
+      <h2>Product Index</h2>
+      <div className='container-row grid'>
+        <div>
+          <ProductIndex onProductClick={handleProductClick} onProductsLoaded={handleProductsLoaded} />
         </div>
         <div>
-          <UsersShopsIndex />
+          <SellerDashboardProductShow product={selectedProduct} />
         </div>
       </div>
-    // </div>
+      <div>
+        <UsersShopsIndex />
+      </div>
+    </div>
   );
 }
 
 export default SellerDashboard;
+
