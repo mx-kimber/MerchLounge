@@ -44,7 +44,7 @@ export function UserUpdate() {
 
   const handleAccountDelete = () => {
     setModalVisible(true);
-    setModalContent(<AccountDelete />);
+    setModalContent(<AccountDelete onClose={handleCloseModal} />);
   };
 
   const handleSubmit = (event) => {
@@ -54,6 +54,8 @@ export function UserUpdate() {
         setCurrentUser(response.data);
         // alert('Account updated successfully!');
         window.location.href = "/account_settings";
+        setModalVisible(false);
+        setModalContent(null);
       })
       .catch((error) => {
         console.error(error);
@@ -67,7 +69,7 @@ export function UserUpdate() {
 
   return (
     <div className='container-col align-center'>
-    <h1>Update Account Info</h1>
+      <h1>Update Account Info</h1>
       <form onSubmit={handleSubmit}>
         <div className='container-col align-right'>
           <div>
@@ -109,10 +111,10 @@ export function UserUpdate() {
         
           <div className='container-col'>
             <div>
-              <button onClick={handleSubmit} >Update Account</button>
+              <button type="submit" className="button">Update Account</button>
             </div>
             <div>
-              <button onClick={handleAccountDelete}>Delete Account</button>
+              <button type="button" onClick={handleAccountDelete}>Delete Account</button>
             </div>
           </div>
         </div>

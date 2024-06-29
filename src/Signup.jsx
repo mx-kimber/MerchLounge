@@ -84,7 +84,7 @@ export function Signup() {
             <label>Password:</label>
             <input name="password_confirmation" type="password" autoComplete="new-password" />
           </div>
-          <button type={handleSubmit}>Signup</button>
+          <button className="button" type="submit">Signup</button>
           {/* <div>
             <label>Seller:</label>
             <input name="seller" type="checkbox" />

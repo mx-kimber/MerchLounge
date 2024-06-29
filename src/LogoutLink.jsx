@@ -10,9 +10,9 @@ export function LogoutLink() {
 
   return (
     <div className="#">
-      <a onClick={handleClick}>
+      <button className="nav-button" onClick={handleClick}>
         Logout
-      </a>
+      </button>
     </div>
   );
 }

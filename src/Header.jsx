@@ -37,37 +37,45 @@ export function Header() {
   let authenticationLinks;
   if (localStorage.jwt === undefined) {
     authenticationLinks = (
-      <div className="nav-links">
-        <a onClick={handleShowLogin}>Login</a>
-        <a onClick={handleShowSignup}>Signup</a>
+      
+      <div className="gap-10 justify-right">
+      
+        <button className="nav-button" onClick={handleShowLogin}>Login</button>
+        <button className="nav-button" onClick={handleShowSignup}>Signup</button>
       </div>
     );
   } else {
     authenticationLinks = (
-      <div className="nav-links">
+
+      <div className="gap-10 justify-right">
         <LogoutLink />
-        <a onClick={handleNavToUserSettings}>Account Settings</a>
+      <button className="nav-button" onClick={handleNavToUserSettings}>Account Settings</button>
       </div>
     );
   }
 
   return (
     <header>
-      <div className="nav-links">
-        <div>{authenticationLinks}</div>
-      </div>
+      
+        <div className="container-row">
 
-      <div className="logo-container" >
-        <div className="m-logo" onClick={handleNavToHome} style={{ cursor: "pointer" }}>
-          <div className="logo-M-font-100">M</div>
-          <div className="erchLounge-container">
-            <div className="logo-font-30">erch</div>
-            <div className="logo-font-50">L</div>
-            <div className="logo-font-30 ounge-skooch">ounge</div>
-          </div>
+          <div className="logo" onClick={handleNavToHome} style={{ cursor: "pointer" }}>
+            <div className="container-row align-center width-100">
+            <div className="font-105 i"><b>l</b></div>
+          
+              <div className="font-105 m "><b>M</b></div>
+         
+              <div className="font-30 erch">erch</div>
+              <div className="font-100 l"><b>L</b></div>
+              <div className="font-20 ounge">ounge</div>
+            
+          
+                    
         </div>
-      </div>
-
+        </div> <div className="justify-right width-100">
+   {authenticationLinks} 
+        </div></div>
+   
       <Modal show={modalVisible} onClose={handleCloseModal}>
         {modalContent}
       </Modal>

@@ -44,8 +44,8 @@ export function UserShow() {
   }
 
   return (
-    <div className='inner-container'>
-    <h2>Account Info</h2>
+    <div className='container-row space-between'>
+    
     <div>
       {currentUser && (
       <>
