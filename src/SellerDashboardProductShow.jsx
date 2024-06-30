@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductShow from './ProductShow';
 import ProductUpdate from './ProductUpdate';
 
 export function SellerDashboardProductShow({ product, onProductUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (!product) {
+      setIsEditing(false);
+    }
+  }, [product]);
 
   const handleProductUpdateClick = () => {
     setIsEditing(true);
@@ -18,9 +24,13 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
     setIsEditing(false);
   };
 
+  if (!product) {
+    return <div>No product available.</div>;
+  }
+
   return (
-    <div className='container-col height-100'>
-      <div className='user-show-container'>
+    <div className='container-col'>
+      <div className='user-show-container height-100'>
         {isEditing ? (
           <ProductUpdate 
             product={product} 
@@ -29,21 +39,16 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
           />
         ) : (
           <>
-            {product ? (
-              <>
-                <ProductShow product={product}/>
-              </>
-            ) : (
-              <p>Select a product to see details</p>
-            )}
+            <ProductShow product={product} />
           </>
         )}
-        
-      </div><div className='container-row justify-bottom'>
-          <button onClick={handleProductUpdateClick}>Update Product</button>
-        </div>
+      </div>
+      <div className='container-row'>
+        <button onClick={handleProductUpdateClick}>Update Product</button>
+      </div>
     </div>
   );
 }
 
 export default SellerDashboardProductShow;
+
