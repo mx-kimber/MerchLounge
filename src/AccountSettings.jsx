@@ -34,9 +34,9 @@ export function AccountSettings() {
           <UserShow />  
         </div>
       </div>
-        <div className="users-shops-index-container">
+        {/* <div className="users-shops-index-container">
           <UsersShopsIndex />
-        </div>
+        </div> */}
       </div>
 
 

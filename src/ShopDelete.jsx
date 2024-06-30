@@ -16,7 +16,7 @@ export function ShopDelete({ shopId, onDeleteSuccess }) {
         if (onDeleteSuccess) {
           onDeleteSuccess();
         }
-        window.location.href = "/account_settings"; 
+        window.location.reload();
       })
       .catch(error => {
         console.error("There was an error deleting the shop!", error);
