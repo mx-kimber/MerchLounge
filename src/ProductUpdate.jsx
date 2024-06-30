@@ -57,6 +57,17 @@ export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
     setIsModalOpen(false);
   };
 
+  const handleDeleteProduct = () => {
+    axios.delete(`http://localhost:3000/products/${product.id}.json`)
+      .then(() => {
+        console.log('Product deleted successfully');
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error deleting product:', error);
+      });
+  };
+
   return (
     <div className='container-col align-center'>
       <h1>Update Product</h1>
@@ -110,6 +121,9 @@ export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
           <div>
             <button type="button" onClick={() => setIsModalOpen(true)}>
               Select Shops
+            </button>
+            <button type="button" onClick={handleDeleteProduct}>
+              Delete Product
             </button>
           </div>
           <div>

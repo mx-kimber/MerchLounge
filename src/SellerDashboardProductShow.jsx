@@ -40,6 +40,7 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
         ) : (
           <>
             <ProductShow product={product} />
+            {/*
             <div>
               <strong>Shops:</strong>
               {product.shops && product.shops.length > 0 ? (
@@ -52,11 +53,12 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
                 <p>No shops associated</p>
               )}
             </div>
+            */}
           </>
         )}
       </div>
       <div className='container-row'>
-        <button onClick={handleProductUpdateClick}>Update Product</button>
+        <button onClick={handleProductUpdateClick}>Edit Product</button>
       </div>
     </div>
   );
