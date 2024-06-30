@@ -1,23 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import ShopsModal from './ShopsModal';
 
 export function ProductCreate({ onCreateProduct }) {
   const [products, setProducts] = useState([]);
-  const [shops, setShops] = useState([]);
+  const [selectedShops, setSelectedShops] = useState([]);
   const { currentUser } = useContext(UserContext);
-
-  useEffect(() => {
-    if (currentUser) {
-      axios.get(`http://localhost:3000/shops.json?user_id=${currentUser.id}`)
-        .then((response) => {
-          setShops(response.data);
-        })
-        .catch((error) => {
-          console.error('Error fetching shops:', error);
-        });
-    }
-  }, [currentUser]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleProductCreate = (params, successCallback) => {
     axios.post("http://localhost:3000/products.json", params)
@@ -35,9 +25,13 @@ export function ProductCreate({ onCreateProduct }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const params = Object.fromEntries(formData.entries());
-    params.shop_ids = [params.shop_id]; 
-    delete params.shop_id;
+    params.shop_ids = selectedShops; 
     handleProductCreate(params, () => event.target.reset());
+  };
+
+  const handleSelectShops = (shops) => {
+    setSelectedShops(shops);
+    setIsModalOpen(false);
   };
 
   return (
@@ -46,15 +40,9 @@ export function ProductCreate({ onCreateProduct }) {
       <form onSubmit={handleSubmit}>
         <div className="container-col align-right">
           <div>
-            Shop:
-            <select name="shop_id">
-              <option value="">Select a shop</option>
-              {shops.map((shop) => (
-                <option key={shop.id} value={shop.id}>
-                  {shop.shop_name}
-                </option>
-              ))}
-            </select>
+            <button type="button" onClick={() => setIsModalOpen(true)}>
+              Select Shops
+            </button>
           </div>
           <div>
             Product Name: <input name="product_name" type="text" required />
@@ -73,6 +61,7 @@ export function ProductCreate({ onCreateProduct }) {
           </div>
         </div>
       </form>
+      {isModalOpen && <ShopsModal onSelectShops={handleSelectShops} />}
     </div>
   );
 }
