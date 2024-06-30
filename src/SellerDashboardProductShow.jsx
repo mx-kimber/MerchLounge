@@ -40,6 +40,18 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
         ) : (
           <>
             <ProductShow product={product} />
+            <div>
+              <strong>Shops:</strong>
+              {product.shops && product.shops.length > 0 ? (
+                <ul>
+                  {product.shops.map((shop) => (
+                    <li key={shop.id}>{shop.shop_name}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No shops associated</p>
+              )}
+            </div>
           </>
         )}
       </div>
@@ -51,4 +63,3 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
 }
 
 export default SellerDashboardProductShow;
-

@@ -7,14 +7,24 @@ const ProductShow = ({ product, onClose }) => {
     <div className='grid'>
       <div className='container-col align-left'>
         {/* <span className='close' onClick={onClose}>&times;</span> */}
-        
         <img src={product.product_images} alt={product.product_name} />
-        </div>
-        <div className='container-col align-right'>
+      </div>
+      <div className='container-col align-right'>
         <h2>{product.product_name}</h2>
+        <p>Quantity: {product.quantity}</p>
         <p>Price: ${product.price}</p>
         <p>Description: {product.description}</p>
-        <p>Quantity: {product.quantity}</p>
+
+        {product.shops && product.shops.length > 0 && (
+          <div>
+            <strong>Shops:</strong>
+            <ul>
+              {product.shops.map((shop) => (
+                <li key={shop.id}>{shop.shop_name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
