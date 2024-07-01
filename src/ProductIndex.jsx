@@ -11,7 +11,6 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
   const [selectedProductIds, setSelectedProductIds] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const navigate = useNavigate();
-  
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -35,9 +34,6 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
   
     fetchProducts();
   }, [currentUser]); 
-  
-  
-  
 
   const handleCloseModal = () => {
     setModalVisible(false);
@@ -119,7 +115,13 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
                     />
                   </div>
                   <div>
-                    <img src={product.product_images} alt={product.product_name} />
+                    {product.product_images && product.product_images.length > 0 ? (
+                      product.product_images.map((image, index) => (
+                        <img key={index} src={image.image_url} alt={product.product_name} style={{ width: '50px', height: '50px' }} />
+                      ))
+                    ) : (
+                      <span>No Image</span>
+                    )}
                   </div>
                   <div>
                     {product.product_name}
