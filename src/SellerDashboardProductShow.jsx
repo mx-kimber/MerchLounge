@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ProductShow from './ProductShow';
 import ProductUpdate from './ProductUpdate';
 
 export function SellerDashboardProductShow({ product, onProductUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [productImages, setProductImages] = useState([]);
+
+  useEffect(() => {
+    const fetchProductImages = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/products/${product.id}/product_images.json`);
+        setProductImages(response.data);
+      } catch (error) {
+        console.error("There was an error fetching the product images!", error);
+      }
+    };
+
+    if (product) {
+      fetchProductImages();
+    }
+  }, [product]);
 
   useEffect(() => {
     if (!product) {
@@ -40,20 +57,15 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
         ) : (
           <>
             <ProductShow product={product} />
-            {/*
-            <div>
-              <strong>Shops:</strong>
-              {product.shops && product.shops.length > 0 ? (
-                <ul>
-                  {product.shops.map((shop) => (
-                    <li key={shop.id}>{shop.shop_name}</li>
-                  ))}
-                </ul>
+            <div className="image-gallery">
+              {productImages.length > 0 ? (
+                productImages.map((image) => (
+                  <img key={image.id} src={image.image_url} alt={`Product ${product.product_name}`} className="gallery-image" />
+                ))
               ) : (
-                <p>No shops associated</p>
+                <p>No product images available.</p>
               )}
             </div>
-            */}
           </>
         )}
       </div>

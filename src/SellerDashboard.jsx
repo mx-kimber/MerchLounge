@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import UsersShopsIndex from './UsersShopsIndex';
 import ProductIndex from './ProductIndex';
 import SellerDashboardProductShow from './SellerDashboardProductShow';
+import ProductImages from './ProductImages';
 
 export function SellerDashboard() {
   const [products, setProducts] = useState([]);
@@ -41,6 +42,7 @@ export function SellerDashboard() {
     <div>
     <UsersShopsIndex />
   </div>
+  <ProductImages />
   </div>
   );
 }
