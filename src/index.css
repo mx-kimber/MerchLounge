@@ -45,6 +45,9 @@ button, .button, .nav-button {
   transition: box-shadow 0.3s ease;
 }
 
+.pointer {
+  cursor: pointer
+}
 
 button:hover {
   /* box-shadow: 0 6px 8px rgba(135, 6, 6, 0.2); */

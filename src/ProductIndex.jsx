@@ -11,6 +11,7 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
   const [selectedProductIds, setSelectedProductIds] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const navigate = useNavigate();
+  
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -105,7 +106,7 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
           </div>
           {products.length > 0 ? (
             products.map((product) => (
-              <div key={product.id} className='container-row' onClick={() => onProductClick(product)}>
+              <div key={product.id} className='container-row pointer' onClick={() => onProductClick(product)}>
                 <div className='container-row space-between user-show-container'>
                   <div>
                     <input

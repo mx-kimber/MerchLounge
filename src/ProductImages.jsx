@@ -10,15 +10,15 @@ export function ProductImages() {
         const response = await axios.get('http://localhost:3000/product_images.json');
         const images = response.data;
 
-    
         const productDetailsPromises = images.map(async (image) => {
           const productResponse = await axios.get(`http://localhost:3000/products/${image.product_id}.json`);
           const productName = productResponse.data.product_name;
           return { ...image, product_name: productName };
         });
 
+     
         const productDetails = await Promise.all(productDetailsPromises);
-s
+
         setProductImageDetails(productDetails);
       } catch (error) {
         console.error("There was an error fetching the product images and details!", error);
@@ -37,7 +37,8 @@ s
             <li key={image.id}>
               <img src={image.image_url} alt={`Product ${image.product_name}`} style={{ width: '100px', height: '100px' }} />
               <p>Product Name: {image.product_name}</p>
-             
+              {/* <p>Created At: {new Date(image.created_at).toLocaleString()}</p>
+              <p>Updated At: {new Date(image.updated_at).toLocaleString()}</p> */}
             </li>
           ))}
         </ul>
