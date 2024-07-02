@@ -117,9 +117,11 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
                   </div>
                   <div>
                     {product.product_images && product.product_images.length > 0 ? (
-                      product.product_images.map((image, index) => (
-                        <img key={index} src={image.image_url} alt={product.product_name} style={{ width: '50px', height: '50px' }} />
-                      ))
+                      <img
+                        src={product.product_images[0].image_url}
+                        alt={product.product_name}
+                        style={{ width: '50px', height: '50px' }}
+                      />
                     ) : (
                       <span>No Image</span>
                     )}

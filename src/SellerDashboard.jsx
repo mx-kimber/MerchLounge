@@ -42,7 +42,7 @@ export function SellerDashboard() {
     <div>
     <UsersShopsIndex />
   </div>
-  <ProductImages />
+  {/* <ProductImages /> */}
   </div>
   );
 }

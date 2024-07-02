@@ -7,7 +7,15 @@ const ProductShow = ({ product, onClose }) => {
     <div className='grid'>
       <div className='container-col align-left'>
         {/* <span className='close' onClick={onClose}>&times;</span> */}
-        <img src={product.product_images} alt={product.product_name} />
+        <div>
+          {product.product_images && product.product_images.length > 0 ? (
+            product.product_images.map((image, index) => (
+              <img key={index} src={image.image_url} alt={product.product_name} style={{ width: '100px', height: '100px' }} />
+            ))
+          ) : (
+            <span>No Image</span>
+          )}
+        </div>
       </div>
       <div className='container-col align-right'>
         <h2>{product.product_name}</h2>

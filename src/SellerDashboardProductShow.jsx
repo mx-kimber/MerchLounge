@@ -57,15 +57,15 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
         ) : (
           <>
             <ProductShow product={product} />
-            <div className="image-gallery">
+            {/* <div>
               {productImages.length > 0 ? (
                 productImages.map((image) => (
-                  <img key={image.id} src={image.image_url} alt={`Product ${product.product_name}`} className="gallery-image" />
+                  <img key={image.id} src={image.image_url} alt={`Product ${product.product_name}`} />
                 ))
               ) : (
                 <p>No product images available.</p>
               )}
-            </div>
+            </div> */}
           </>
         )}
       </div>
