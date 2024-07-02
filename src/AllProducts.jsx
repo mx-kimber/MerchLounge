@@ -22,6 +22,11 @@ export function AllProducts() {
           {products.map(product => (
             <div key={product.id}>
               <h3>{product.product_name}</h3>
+              {product.product_images && product.product_images.length > 0 ? (
+                <img src={product.product_images[0].image_url} alt={product.product_name} style={{ width: '100px', height: '100px' }} />
+              ) : (
+                <span>No Image</span>
+              )}
               <p>Price: ${product.price}</p>
               <p>Description: {product.description}</p>
               <p>Quantity: {product.quantity}</p>
