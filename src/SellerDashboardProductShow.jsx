@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductShow from './ProductShow';
 import ProductUpdate from './ProductUpdate';
+import Modal from './Modal';
+import ImageUploader from './ImageUploader';
 
 export function SellerDashboardProductShow({ product, onProductUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const [productImages, setProductImages] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   useEffect(() => {
     const fetchProductImages = async () => {
@@ -41,6 +45,22 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
     setIsEditing(false);
   };
 
+  const handleOpenImageUploader = () => {
+    setModalContent(<ImageUploader product_id={product.id} onImageUpload={handleImageUpload} />);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
+
+  const handleImageUpload = (imageData) => {
+    console.log("Uploaded image data:", imageData);
+    setModalVisible(false);
+    fetchProductImages();
+  };
+
   if (!product) {
     return <div>No product available.</div>;
   }
@@ -57,7 +77,7 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
         ) : (
           <>
             <ProductShow product={product} />
-            {/* <div>
+            <div>
               {productImages.length > 0 ? (
                 productImages.map((image) => (
                   <img key={image.id} src={image.image_url} alt={`Product ${product.product_name}`} />
@@ -65,13 +85,17 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
               ) : (
                 <p>No product images available.</p>
               )}
-            </div> */}
+            </div>
           </>
         )}
       </div>
       <div className='container-row'>
         <button onClick={handleProductUpdateClick}>Edit Product</button>
+        <button onClick={handleOpenImageUploader}>Edit Images</button>
       </div>
+      <Modal show={modalVisible} onClose={handleCloseModal}>
+        {modalContent}
+      </Modal>
     </div>
   );
 }
