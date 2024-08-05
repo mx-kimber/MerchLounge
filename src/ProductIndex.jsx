@@ -10,8 +10,8 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
   const [modalContent, setModalContent] = useState(null);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [productImages, setProductImages] = useState({});
   const navigate = useNavigate();
-  
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
           const response = await axios.get(`http://localhost:3000/products.json?user_id=${currentUser.id}`);
           const fetchedProducts = response.data;
           onProductsLoaded(fetchedProducts);
-          
+
           if (fetchedProducts.length > 0) {
             onProductClick(fetchedProducts[0]);
           } else {
@@ -32,9 +32,28 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
         }
       }
     };
-  
+
     fetchProducts();
-  }, [currentUser]); 
+  }, [currentUser, products, onProductsLoaded, onProductClick]);
+
+  useEffect(() => {
+    const fetchProductImages = async () => {
+      try {
+        const productImagesData = {};
+        for (const product of products) {
+          const response = await axios.get(`http://localhost:3000/product_images.json?product_id=${product.id}`);
+          productImagesData[product.id] = response.data.resources;
+        }
+        setProductImages(productImagesData);
+      } catch (error) {
+        console.error('Error fetching product images:', error);
+      }
+    };
+
+    if (products.length > 0) {
+      fetchProductImages();
+    }
+  }, [products]);
 
   const handleCloseModal = () => {
     setModalVisible(false);
@@ -116,9 +135,9 @@ export function ProductIndex({ products, onProductClick, onProductsLoaded }) {
                     />
                   </div>
                   <div>
-                    {product.product_images && product.product_images.length > 0 ? (
+                    {productImages[product.id] && productImages[product.id].length > 0 ? (
                       <img
-                        src={product.product_images[0].image_url}
+                        src={productImages[product.id][0].url}
                         alt={product.product_name}
                         style={{ width: '50px', height: '50px' }}
                       />

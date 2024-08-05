@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function ImageUploader() {
+function ImageUploader({ productId }) {
   const [imageSelected, setImageSelected] = useState(null);
   const [cloudinaryUrl, setCloudinaryUrl] = useState(null);
   const [cloudinaryImages, setCloudinaryImages] = useState([]);
@@ -10,7 +10,7 @@ function ImageUploader() {
   useEffect(() => {
     const fetchCloudinaryImages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/product_images.json?folder=MerchLounge");
+        const response = await axios.get(`http://localhost:3000/product_images.json?product_id=${productId}`);
         setCloudinaryImages(response.data.resources);
       } catch (error) {
         console.error(error);
@@ -18,7 +18,7 @@ function ImageUploader() {
     };
 
     fetchCloudinaryImages();
-  }, []);
+  }, [productId]);
 
   useEffect(() => {
     if (uploadSuccess) {
@@ -54,9 +54,10 @@ function ImageUploader() {
 
     const formData = new FormData();
     formData.append("file", imageSelected);
+    formData.append("product_id", productId); // Add product_id to the form data
 
     try {
-      const response = await axios.get(`http://localhost:3000/product_images.json?folder=MerchLounge`);
+      const response = await axios.get(`http://localhost:3000/product_images.json?product_id=${productId}`);
      
       if (response.data.resources && response.data.resources.length > 0) {
         const existingPublicId = `MerchLounge/${imageSelected.name}`; 
@@ -79,7 +80,7 @@ function ImageUploader() {
       const uploadResponse = await axios.post("http://localhost:3000/upload_image.json", formData);
       console.log(uploadResponse.data);
   
-      const updatedImagesResponse = await axios.get("http://localhost:3000/product_images.json?folder=MerchLounge");
+      const updatedImagesResponse = await axios.get(`http://localhost:3000/product_images.json?product_id=${productId}`);
       setCloudinaryImages(updatedImagesResponse.data.resources);
       setUploadSuccess(true);
       setImageSelected(null);
@@ -117,13 +118,13 @@ function ImageUploader() {
       <div>
         <h3>Cloudinary Images</h3>
       </div> 
-      <div className="image-container"> 
-        <div className="image-wrap">
+      <div className="grid"> 
+        <div className="container-row">
           {cloudinaryImages.map((image) => (
             <img 
               src={image.url} 
               key={image.public_id} 
-              className="photo" 
+              className="product-images" 
               alt={image.public_id} 
             />
           ))}

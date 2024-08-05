@@ -21,16 +21,24 @@ html {
   scroll-behavior: smooth;
 }
 
+.product-images {
+  width:100px;
+  height:100px;
+  object-fit:cover;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .padding-10 {
   padding:10px;
 }
-
 
 .box {
   height: 40px;
   width:80px;
   background-color: black;
 }
+
 button, .button, .nav-button {
   padding: 15px 20px;
   width:100%;
