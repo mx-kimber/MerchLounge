@@ -14,11 +14,18 @@ export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
   const [selectedShops, setSelectedShops] = useState(product.shops.map(shop => shop.id) || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    if (currentUser) {
-      fetchUserShops();
-    }
-  }, [currentUser]);
+useEffect(() => {
+  if (product) {
+    setUpdatedProduct({
+      product_name: product.product_name,
+      description: product.description,
+      price: product.price,
+      quantity: product.quantity,
+    });
+    setSelectedShops(product.shops.map(shop => shop.id) || []);
+  }
+}, [product]);
+
 
   const fetchUserShops = () => {
     axios.get(`http://localhost:3000/shops.json?user_id=${currentUser.id}`)
