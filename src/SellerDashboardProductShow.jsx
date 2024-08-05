@@ -7,24 +7,8 @@ import ImageUploader from './ImageUploader';
 
 export function SellerDashboardProductShow({ product, onProductUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [productImages, setProductImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-
-  useEffect(() => {
-    const fetchProductImages = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/products/${product.id}/product_images.json`);
-        setProductImages(response.data);
-      } catch (error) {
-        console.error("There was an error fetching the product images!", error);
-      }
-    };
-
-    if (product) {
-      fetchProductImages();
-    }
-  }, [product]);
 
   useEffect(() => {
     if (!product) {
@@ -46,19 +30,13 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
   };
 
   const handleOpenImageUploader = () => {
-    setModalContent(<ImageUploader product_id={product.id} onImageUpload={handleImageUpload} />);
+    setModalContent(<ImageUploader productId={product.id} />);
     setModalVisible(true);
   };
 
   const handleCloseModal = () => {
     setModalVisible(false);
     setModalContent(null);
-  };
-
-  const handleImageUpload = (imageData) => {
-    console.log("Uploaded image data:", imageData);
-    setModalVisible(false);
-    fetchProductImages();
   };
 
   if (!product) {
@@ -75,18 +53,7 @@ export function SellerDashboardProductShow({ product, onProductUpdate }) {
             onCancel={handleCancelUpdate}
           />
         ) : (
-          <>
-            <ProductShow product={product} />
-            <div>
-              {productImages.length > 0 ? (
-                productImages.map((image) => (
-                  <img key={image.id} src={image.image_url} alt={`Product ${product.product_name}`} />
-                ))
-              ) : (
-                <p>No product images available.</p>
-              )}
-            </div>
-          </>
+          <ProductShow product={product} />
         )}
       </div>
       <div className='container-row'>

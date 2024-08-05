@@ -6,7 +6,7 @@ import { UserContext } from './UserContext';
 export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
   const { currentUser } = useContext(UserContext);
   const [updatedProduct, setUpdatedProduct] = useState({
-    name: product.product_name,
+    product_name: product.product_name,
     description: product.description,
     price: product.price,
     quantity: product.quantity,
@@ -46,6 +46,7 @@ export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
       .then((response) => {
         onUpdateProduct(response.data);
         console.log('Product updated:', response.data);
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error updating product:', error);
@@ -74,11 +75,11 @@ export function ProductUpdate({ product, onUpdateProduct, onCancel }) {
       <div className='container-col align-center'>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="product_name">Name:</label>
             <input
-              id="name"
-              value={updatedProduct.name}
-              name="name"
+              id="product_name"
+              value={updatedProduct.product_name}
+              name="product_name"
               type="text"
               onChange={handleChange}
               required

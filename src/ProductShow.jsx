@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const ProductShow = ({ product, onClose }) => {
+const ProductShow = ({ product }) => {
+  const [productImages, setProductImages] = useState([]);
+
+  useEffect(() => {
+    const fetchProductImages = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/product_images.json?product_id=${product.id}`);
+        setProductImages(response.data.resources);
+      } catch (error) {
+        console.error("There was an error fetching the product images!", error);
+      }
+    };
+
+    if (product) {
+      fetchProductImages();
+    }
+  }, [product]);
+
   if (!product) return null;
 
   return (
     <div className='grid'>
       <div className='container-col align-left'>
-        {/* <span className='close' onClick={onClose}>&times;</span> */}
         <div>
-          {product.product_images && product.product_images.length > 0 ? (
-            product.product_images.map((image, index) => (
-              <img key={index} src={image.image_url} alt={product.product_name} style={{ width: '100px', height: '100px' }} />
+          {productImages.length > 0 ? (
+            productImages.map((image) => (
+              <img key={image.public_id} src={image.url} alt={`Product ${product.product_name}`} style={{ width: '100px', height: '100px' }} />
             ))
           ) : (
             <span>No Image</span>
